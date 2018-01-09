@@ -1,5 +1,5 @@
 ---
-title: "DS 202 - Working in teams"
+title: "Stat 480 - Working in teams"
 author: "Heike Hofmann"
 ratio: 16x10
 output:

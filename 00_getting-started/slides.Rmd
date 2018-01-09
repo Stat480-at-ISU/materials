@@ -125,7 +125,7 @@ length(pkgs)
 
 ## Syllabus
 
-Full syllabus is available [from the course website](syllabus.pdf).
+Full syllabus is available [from the course website](https://stat480-at-isu.github.io/syllabus.pdf).
 
 ###Textbook (optional)
 
