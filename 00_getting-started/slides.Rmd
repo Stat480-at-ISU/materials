@@ -184,6 +184,7 @@ Course website:
     * report findings in report or shiny app
     * present your project in front of the class
 
+
 ## Attendance
 
 I expect you to attend class: there will be a substantial amount of time devoted to 'hands-on' examples on the computers. Make use of that time!
@@ -192,6 +193,20 @@ If you have to miss class, please
 
 (a) let me know ahead of time. 
 (b) make sure to catch up with the material (e.g. have a designated note taker, talk to one of your team members, ... )
+
+## Disability and Sickness
+
+- Make sure to let me know (if you can, in advance, mini text is fine)
+- If you have the flu - !!! Stay at home and take care of yourself !!!
+- Keep on top of the weekly homework or you will get swamped!
+
+## Lectures
+
+- Electronic copy of the slides are available on the website
+- But you’ll need to take your own notes!
+- If you really want complete notes, organize a roster with others in the class
+- Don't goof off on the computers!
+- If you're bored, complain!
 
 ## Getting Help
 
@@ -210,3 +225,34 @@ Have a look at:
 - stackoverflow's [Asking a good question](http://stackoverflow.com/help/how-to-ask)
 - R's [Posting guidelines](https://www.r-project.org/posting-guide.html)
 
+## What do you know already?
+
+- excel?
+- a programming language? 
+- SAS? R? R markdown?
+- database theory? what is a third normal form?
+
+## What is this class about?
+
+- very data centric
+- I'd like to know what you are interested in
+
+## 
+
+- **Sports** e.g. Baseball salaries and performance
+- **Crime data** (incl. type, time, place, demographics etc.)
+- **Health** e.g. fitness statistics, or disease rates, or health care costs
+- **Movies** e.g. ratings/box office revenues from IMDB
+Climate/Weather Data
+- **Travel data**, e.g. US flights
+- **Environmental Data**: Pollution, Fuel Economy, CO2 Emissions (Carbon Footprint)
+- **Global Data**:  World Economy, Social indicators, ...
+
+
+Anything else you can think of?
+
+
+## Now vote
+
+Go to Wufoo Site to let me know your favorites and make suggestions:
+http://heike.wufoo.com/forms/topics-of-interest/ 
