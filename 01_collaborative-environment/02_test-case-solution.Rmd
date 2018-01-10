@@ -1,9 +1,12 @@
 ---
-title: "Stat 585 - Working in teams: Sample solution for the test case"
+title: "Stat 480 - Working in teams: Sample solution for the test case"
 author: "Heike Hofmann"
 ratio: 16x10
 output:
-  html_document
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, fig.width=4, fig.height=4)
