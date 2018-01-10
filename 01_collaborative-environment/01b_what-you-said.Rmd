@@ -19,7 +19,7 @@ library(tidyverse)
 
 <img src="images/topics.png" width=600>
 
-... there's twelve more of these ... which topic is the best?
+... there's nine more of these charts ... which topic is the best?
 
 ## 
 
