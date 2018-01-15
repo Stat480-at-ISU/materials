@@ -1,0 +1,225 @@
+---
+title: "Intro to R"
+author: Heike Hofmann
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+# Welcome R
+
+## Outline
+
+- R is a calculator
+- five commands to look at objects
+- extracting pieces
+- a first glimpse at data
+
+
+## The R language
+
+- Learning a new language: grammar, vocabulary
+- Loading, examining, summarizing data
+- Creating data
+- Getting help
+- Miscellaneous useful stuff
+
+
+## {.white}
+
+<img class="cover" src="images/language.png" alt="", width=2000>
+
+## Grammar
+
+- Basic algebra is the same as calculator/mathematics
+- explicit operators: `2*x` not `2x`,  `2^p` instead of `2p`
+- Applying a function is similar 
+- Making a variable, use `<-` or `=`
+- Everything in R is a vector
+
+## Examples
+
+<div class="double">
+<p class="double-flow">
+**Math** 
+
+Assignments
+$x = \frac{2}{3}$
+
+Functions
+$\sqrt{x}$
+
+Vectors
+$y = \left( 1, 2, 3, 5\right)^t$  
+
+Indices
+$y_1$
+
+Mathematical Operators
+$\sum_{i=1}^{4} y$
+
+$2y$
+</p><p class="double-flow">
+**Code**
+
+```
+x <- 2/3
+```
+
+```
+sqrt(x)
+```
+
+```
+y <- c(1,2,3,5)
+```
+
+```
+y[1]
+```
+
+```
+sum(y)
+```
+
+```
+2*y
+```
+</p>
+</div>
+
+
+## Your Turn (5 min) {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+- <span style="color:white">Introduce vector $x$ defined as $x = (4, 1, 3, 9)^t$</span>
+- <span style="color:white">Introduce vector $x$ defined as  $y = (1, 2, 3, 5)^t$</span>
+- <span style="color:white">Calculate the Euclidean distance between the two vectors $x$ and $y$, defined as 
+\[
+d = \sqrt(\sum_{i=1}^4 (x_i - y_i)^2)
+\]
+</span>
+
+
+## Vocabulary 
+
+- What verbs (=functions) do you need to know?
+- Loading data
+- Accessing parts of things
+- Statistical summaries
+- ...
+
+## R Reference Card
+
+- Download the R Reference Card from http://cran.r-project.org/doc/contrib/Short-refcard.pdf
+- Open/Print it so that you can glance at it while working
+
+
+
+## Very basics
+
+### Getting help within R
+
+If you want to know what a specific `command` is doing:
+
+```
+?command
+help(command) 
+help.search(command)
+```
+
+### Getting out
+
+```
+q()
+```
+Quits out of the console
+
+
+## Loading class data
+
+- Some R packages have in-built datasets
+- For this class, there is an R package available on github 
+- Installing/Updating `classdata` package (once every so often):
+```{r}
+devtools::install_github("heike/classdata")
+```
+- Make the data available (every time you start R):
+```{r}
+library(classdata)
+```
+
+
+## Your Turn (5 min) {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">Install the package `classdata` on your machine <br>
+<span style="color:white">Make the package active in your current R session:
+```
+library(classdata)
+```
+<span style="color:white">Check the R help on the dataset `fbi`<br>
+<span style="color:white">What happens if you just type in the name of the dataset?
+
+
+## Inspecting objects
+
+for object `x`, we can try out the following commands:
+
+- ```x``` 
+- ```head(x)```
+- ```summary(x)```
+- ```str(x)```
+- ```dim(x)```
+
+
+<font color="darkblue">Try these commands out for yourself on the `fbi` data.</font>
+
+## The fbi data
+
+- fbi is a data frame with columns (variables) and rows (records)
+
+```{r}
+str(fbi)
+```
+
+## Extracting parts of objects
+
+For object `x`, we can extract parts in the following manner:
+
+```
+x$variable
+x[, "variable"]
+x[rows, columns]
+x[1:5, 2:3]
+x[c(1,5,6), c("State","Year")]
+x$variable[rows]
+```
+`rows` and `columns` are vectors of indices.
+
+<font color="darkblue">Try these commands out for yourself on the `fbi` data.</font>
+
+
+## Statistical summaries
+
+Elements of the five point summary: <br>
+```mean, median, min, max, quartiles```<br>
+
+Other summary statistics:<br>
+```range, sd, var```<br>
+
+Summaries of two variables:<br>
+```cor, cov```
+
+## Your turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+- <span style="color:white">Look at the first 10 data records of the `fbi` data
+- <span style="color:white">Compute mean and standard deviation for the number of counts. Why do you get NAs? (read `?NA`)
+- <span style="color:white">Advanced:  Read `?mean` and `?sd`, and fix missing value problem
