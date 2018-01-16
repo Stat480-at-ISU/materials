@@ -223,3 +223,16 @@ Summaries of two variables:<br>
 - <span style="color:white">Look at the first 10 data records of the `fbi` data
 - <span style="color:white">Compute mean and standard deviation for the number of counts. Why do you get NAs? (read `?NA`)
 - <span style="color:white">Advanced:  Read `?mean` and `?sd`, and fix missing value problem
+
+
+## Your turn - practice to ask questions {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+
+<span style="color:white">Write down questions that you could answer with this data 4 minutes by yourself, then pair up for another 3 minutes, and we'll write ideas on the board
+
+
+
+
+<span style="color:white">The types of crimes are defined on the UCR website, see http://www.ucrdatatool.gov/offenses.cfm
