@@ -1,5 +1,5 @@
 ---
-title: "Intro to R"
+title: "Stat 480: Graphics with ggplot2"
 author: Heike Hofmann
 ratio: 16x10
 output:
@@ -150,3 +150,4 @@ other aesthetics: shape
 
 - <span style="color:white">Work through each of the example plots</font>
 - <span style="color:white">Try variations to answer your questions</font>
+
