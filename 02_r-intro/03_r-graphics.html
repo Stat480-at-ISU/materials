@@ -84,16 +84,18 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Year, <span class="dt">y =</span> Murder), <span class="dt">data=</span>fbiwide) +
 <span class="st">  </span><span class="kw">facet_wrap</span>(~State) +
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="03_r-graphics_files/figure-revealjs/unnamed-chunk-2-1.png" width="768" /> ## Setup of <code>facet_wrap</code> and <code>facet_grid</code></p>
+<p><img src="03_r-graphics_files/figure-revealjs/unnamed-chunk-2-1.png" width="768" /></p>
+</section><section id="setup-of-facet_wrap-and-facet_grid" class="slide level2">
+<h2>Setup of <code>facet_wrap</code> and <code>facet_grid</code></h2>
 <ul>
 <li><code>facet_grid</code> has formula specification: <code>rows ~ cols</code></li>
 <li><code>facet_wrap</code> has specification <code>~ variables</code></li>
-<li>multiple variables (in either specification) are included in form of a sum, i.e. <code>rowvar1+rowvar2 ~ colvar1+ colvar2</code></li>
+<li>multiple variables (in either specification) are included in form of a sum, i.e. <code>rowvar1 + rowvar2 ~ colvar1+ colvar2</code></li>
 <li>no variable (in <code>facet_grid</code>) is written as <code>.</code>, i.e. <code>rowvar ~ .</code> are plots in a single column.</li>
 </ul>
 </section><section id="your-turn" class="slide level2 white">
 <h2>Your turn</h2>
-<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000> Use the <code>fbiwide</code> data from the package <code>classdata</code> for this your turn.</p>
 <ul>
 <li><span style="color:white">Plot the number of car thefts by year for each state (facet by state).</font></li>
 <li><span style="color:white">The numbers are dominated by the number of thefts in California, New York, and Texas. Use a log-scale for the y-axis. Does that help?</font></li>
@@ -182,6 +184,13 @@
 <ul>
 <li><span style="color:white">Use the <code>fbi</code> data set to draw a barchart of the variable <code>Violent Crime</code>. Make the height of the bars dependent on the number of reports (use <code>weight</code>). Then facet by type (does the result match your expectation? good! get rid of facetting). Color bars by <code>Type</code>. </font></li>
 <li><span style="color:white">Use the <code>fbi</code> data set to draw a histogram of the number of reports. Facet by type, make sure to use individual scales for the panels. </font></li>
+</ul>
+</section><section id="more-on-ggplot2" class="slide level2">
+<h2>More on <code>ggplot2</code></h2>
+<ul>
+<li>reference/document: <a href="http://ggplot2.tidyverse.org/reference/" class="uri">http://ggplot2.tidyverse.org/reference/</a></li>
+<li>RStudio cheat sheet for <a href="https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf">ggplot2</a></li>
+<li>ggplot2 mailing list: <a href="https://groups.google.com/forum/?fromgroups#!forum/ggplot2" class="uri">https://groups.google.com/forum/?fromgroups#!forum/ggplot2</a></li>
 </ul>
 </section>
 

@@ -39,16 +39,18 @@ ggplot(aes(x = Year, y = Murder), data=fbiwide) +
   facet_wrap(~State) +
   geom_point()
 ```
+
 ## Setup of `facet_wrap` and `facet_grid`
 
 - `facet_grid` has formula specification: `rows ~ cols`
 - `facet_wrap` has specification `~ variables` 
-- multiple variables (in either specification) are included in form of a sum, i.e. `rowvar1+rowvar2 ~ colvar1+ colvar2`
+- multiple variables (in either specification) are included in form of a sum, i.e. `rowvar1 + rowvar2 ~ colvar1+ colvar2`
 - no variable (in `facet_grid`) is written as `.`, i.e. `rowvar ~ .` are plots in a single column.
 
 ## Your turn {.white}
 
 <img class="cover" src="images/blue.jpeg" alt="" width=2000>
+Use the `fbiwide` data from the package `classdata` for this your turn.
 
 - <span style="color:white">Plot the number of car thefts by year for each state (facet by state).</font>
 - <span style="color:white">The numbers are dominated by the number of thefts in California, New York, and Texas. Use a log-scale for the y-axis. Does that help?</font>
@@ -150,4 +152,11 @@ In a barchart, choose the order of the categories consciously (later)
 
 - <span style="color:white">Use the `fbi` data set to draw a barchart of the variable `Violent Crime`. Make the height of the bars dependent on the number of reports (use `weight`). Then facet by type (does the result match your expectation? good! get rid of facetting). Color bars by `Type`. </font>
 - <span style="color:white">Use the `fbi` data set to draw a histogram of the number of reports. Facet by type, make sure to use individual scales for the panels. </font>
+
+## More on `ggplot2`
+
+- reference/document: http://ggplot2.tidyverse.org/reference/
+- RStudio cheat sheet for [ggplot2](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)
+- ggplot2 mailing list: 
+https://groups.google.com/forum/?fromgroups#!forum/ggplot2
 
