@@ -110,7 +110,27 @@
 <li><span style="color:white">Get a subset of all crimes in 2009. Plot the number or rate for one type of crime by state.</span></li>
 <li><span style="color:white">Get a subset of the data that includes number of homicides for the last five years. Find the rate of homicides, extract all states that have a rate of greater than 90% of the rates across all states, and plot (Hint: <code>?quantile</code>).</span></li>
 </ul>
-<p><span style="color:white">Extra credit (1 point): submit your code (regardless of whether it works or not) in Canvas (yourturn-jan25).</p>
+<p><span style="color:white">Extra credit (1 point): submit your code (regardless of whether it works or not) in Canvas (yourturn-checkin-1).</p>
+</section><section id="useful-commands" class="slide level2">
+<h2>Useful commands</h2>
+<p>Number of records in a data set:</p>
+<pre><code>nrow(dataset)  </code></pre>
+<p>Quantiles:</p>
+<pre><code>quantile(variable, probs=0.001, na.rm=T)  </code></pre>
+<p>Find all indices for which the expression is TRUE:</p>
+<pre><code>which(logical variable)  </code></pre>
+<p>Retrieve index of maximum/minimum value:</p>
+<pre><code>which.max(variable)
+which.min(variable) </code></pre>
+</section><section id="your-turn-2" class="slide level2 white">
+<h2>Your turn</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
+<p><span style="color:white">Use the <code>fbi</code> data object to answer the following questions: </span></p>
+<ul>
+<li><span style="color:white">how many reports of Burglaries are there for California? </span></li>
+<li><span style="color:white">which state had the highest rate of violent crimes in 2014? in 1960? </span></li>
+<li><span style="color:white">in how many states in 2011 were there more vehicle thefts than robberies? (which states are those?) </span></li>
+</ul>
 </section><section id="updating-elements-in-a-vector" class="slide level2">
 <h2>Updating elements in a vector</h2>
 <p>You can take a subset and update the original data:</p>
@@ -138,7 +158,7 @@ fbiwide$murder.rate &lt;-<span class="st"> </span>fbiwide$Murder/fbiwide$Populat
 ## [10] &quot;Aggravated.assault&quot;  &quot;Property.crime&quot;      &quot;Burglary&quot;           
 ## [13] &quot;Larceny.theft&quot;       &quot;Motor.vehicle.theft&quot; &quot;murder.rate&quot;</code></pre>
 <p>if that variable exists before, it is being over-written/updated</p>
-</section><section id="your-turn-2" class="slide level2 white">
+</section><section id="your-turn-3" class="slide level2 white">
 <h2>Your turn</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
 <p><span style="color:white">The gapminder data we originally worked with is available <a href="https://stat480-at-isu.github.io/materials/01_collaborative-environment/data/gapminder-5060.csv">here</a>. </span></p>

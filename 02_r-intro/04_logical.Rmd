@@ -68,7 +68,45 @@ Caution! there is another function called `filter` in the `stats` package. Use `
 - <span style="color:white">Get a subset of all crimes in 2009. Plot the number or rate for one type of crime by state.</span>
 - <span style="color:white">Get a subset of the data that includes number of homicides for the last five years. Find the rate of homicides, extract all states that have a rate of greater than 90% of the rates across all states, and plot (Hint: `?quantile`).</span>
 
-<span style="color:white">Extra credit (1 point): submit your code (regardless of whether it works or not) in Canvas (yourturn-jan25).
+<span style="color:white">Extra credit (1 point): submit your code (regardless of whether it works or not) in Canvas (yourturn-checkin-1).
+
+## Useful commands
+
+Number of records in a data set:
+```
+nrow(dataset)  
+```
+
+Quantiles:
+```
+quantile(variable, probs=0.001, na.rm=T)  
+```
+
+Find all indices for which the expression is TRUE:
+```
+which(logical variable)  
+```
+
+Retrieve index of maximum/minimum value:
+```
+which.max(variable)
+which.min(variable) 
+```
+
+## Your turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">Use the `fbi` data object to answer the following questions: </span>
+
+- <span style="color:white">how many reports of Burglaries are there for California?
+</span>
+- <span style="color:white">which state had the highest rate of violent crimes in 2014? in 1961?
+</span>
+- <span style="color:white">in how many states in 2011 were there more vehicle thefts than robberies? (which states are those?)
+</span>
+
+
 
 ## Updating elements in a vector
 
