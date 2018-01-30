@@ -83,17 +83,18 @@
 <li><span style="color:white">Compare summary of Year to the previous result</span></li>
 <li><span style="color:white">Are there other variables that should be factors (or vice versa)? </span></li>
 </ul>
-</section><section id="mini-note" class="slide level2">
-<h2>Mini note:</h2>
+</section><section id="note-factors-in-boxplots" class="slide level2">
+<h2>Note: factors in boxplots</h2>
 <p>boxplots in ggplot2 only work properly if the x variable is a character variable or a factor:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">twoyear &lt;-<span class="st"> </span>dplyr::<span class="kw">filter</span>(fbi, Year %in%<span class="st"> </span><span class="kw">c</span>(<span class="dv">1961</span>, <span class="dv">2014</span>))</code></pre></div>
 <div class="double">
 <p class="double-flow">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> fbi, <span class="kw">aes</span>(<span class="dt">x =</span> Year, <span class="dt">y =</span> Count)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<img src="05_factors_files/figure-revealjs/unnamed-chunk-2-1.png" width="288" />
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> twoyear, <span class="kw">aes</span>(<span class="dt">x =</span> Year, <span class="dt">y =</span> Count)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<img src="05_factors_files/figure-revealjs/unnamed-chunk-3-1.png" width="288" />
 </p>
 <p class="double-flow">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> fbi, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(Year), <span class="dt">y =</span> Count)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<img src="05_factors_files/figure-revealjs/unnamed-chunk-3-1.png" width="288" />
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> twoyear, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(Year), <span class="dt">y =</span> Count)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<img src="05_factors_files/figure-revealjs/unnamed-chunk-4-1.png" width="288" />
 </p>
 </div>
 </section><section id="data-types-checking-and-casting" class="slide level2">

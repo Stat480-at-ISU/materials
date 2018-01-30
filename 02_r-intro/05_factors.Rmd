@@ -31,7 +31,7 @@ output:
 - <span style="color:white">Compare summary of Year to the previous result</span>
 - <span style="color:white">Are there other variables that should be factors (or vice versa)? </span>
 
-## Mini note:
+## Note: factors in boxplots
 
 boxplots in ggplot2 only work properly if the x variable is a character variable or a factor:
 
@@ -40,15 +40,19 @@ library(ggplot2)
 library(classdata)
 ```
 
+```{r}
+twoyear <- dplyr::filter(fbi, Year %in% c(1961, 2014))
+```
+
 <div class="double">
 <p class="double-flow">
 ```{r, fig.width=3, fig.height = 3, message = FALSE, warning = FALSE}
-ggplot(data = fbi, aes(x = Year, y = Count)) + geom_boxplot()
+ggplot(data = twoyear, aes(x = Year, y = Count)) + geom_boxplot()
 ```
 </p>
 <p class="double-flow">
 ```{r, fig.width=3, fig.height = 3, message = FALSE, warning = FALSE}
-ggplot(data = fbi, aes(x = factor(Year), y = Count)) + geom_boxplot()
+ggplot(data = twoyear, aes(x = factor(Year), y = Count)) + geom_boxplot()
 ```
 </p>
 
