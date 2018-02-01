@@ -8,6 +8,16 @@ output:
     katex: true
     theme: ribbon
 ---
+---
+title: "Stat 480: Logical variables and Filters"
+author: Heike Hofmann
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
 
 # Logical variables and Filters
 
