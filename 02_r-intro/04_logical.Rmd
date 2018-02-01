@@ -103,6 +103,9 @@ which.min(variable)
 </span>
 - <span style="color:white">for any of the violent crimes, which state had the highest rate (and for which crime) in 2014? in 1961? 
 </span>
+
+<span style="color:white">Use the `fbiwide` data object to answer the following question: </span>
+
 - <span style="color:white">in how many states in 2011 were there more vehicle thefts than robberies? (which states are those?)
 </span>
 
