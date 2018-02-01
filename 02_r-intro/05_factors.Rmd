@@ -138,3 +138,4 @@ levels(fbi$Type)
 - Wickham & Grolemund's <a href="http://r4ds.had.co.nz/factors.html">chapter on factors</a> in *R for Data Science*
 - Roger Peng: [*stringsAsFactors: An unauthorized biography*](http://simplystatistics.org/2015/07/24/stringsasfactors-an-unauthorized-biography/")
 - Thomas Lumley: <a href="http://notstatschat.tumblr.com/post/124987394001/stringsasfactors-sigh"><em>stringsAsFactors = &lt;sigh&gt;</em></a> 
+- The `forcats` package has a lot of additional functions that make working with factors easier.
