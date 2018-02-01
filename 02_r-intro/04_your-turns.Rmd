@@ -148,8 +148,10 @@ library(dplyr)
 ```
 
 ```{r burglaries-solution}
-ca_burg <- filter(fbi, Type=="Burglaries", State=="California")
+ca_burg <- filter(fbi, Type=="Burglary", State=="California")
 nrow(ca_burg)
+
+sum(ca_burg$Count)
 ```
 
 - for any of the violent crimes, which state had the highest rate (and for which crime) in 2014? in 1961? 
