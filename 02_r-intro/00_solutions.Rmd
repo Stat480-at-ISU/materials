@@ -1,0 +1,29 @@
+---
+title: "Stat 480: Solution to your turns"
+author: Heike Hofmann
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+# Solution to your turns
+
+## An R package
+
+- The package `yourturns-480` is available in form of a github repository 
+- Install/Update the package with the command
+```{r, eval=FALSE}
+devtools::install_github("Stat480-at-ISU/yourturns480")
+```
+- You will need to update every couple of weeks (I will let you know)
+
+## Run tutorials
+
+- In order to start a set of your turns, use the command `run_tutorial` (from the `learnr` package). 
+- The command below starts the tutorial set for logical variables and filters:
+```{r, eval = FALSE}
+learnr:: run_tutorial("logical", package="yourturns480")
+```
