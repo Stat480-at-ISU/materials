@@ -66,6 +66,8 @@
   
 <section id="factor-variables" class="titleslide slide level1"><h2 class="shout">Factor variables</h2></section><section id="factors" class="slide level2">
 <h2>Factors</h2>
+<p>The solutions to the your turns in this slide deck are available as:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">learnr::<span class="st"> </span><span class="kw">run_tutorial</span>(<span class="st">&quot;factors&quot;</span>, <span class="dt">package=</span><span class="st">&quot;yourturns480&quot;</span>)</code></pre></div>
 <ul>
 <li>A special type of variable to indicate categories</li>
 <li>both <em>labels</em> and their <em>order</em> (i.e. numbers)</li>
@@ -90,11 +92,11 @@
 <div class="double">
 <p class="double-flow">
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> twoyear, <span class="kw">aes</span>(<span class="dt">x =</span> Year, <span class="dt">y =</span> Count)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<img src="05_factors_files/figure-revealjs/unnamed-chunk-3-1.png" width="288" />
+<img src="05_factors_files/figure-revealjs/unnamed-chunk-4-1.png" width="288" />
 </p>
 <p class="double-flow">
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> twoyear, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(Year), <span class="dt">y =</span> Count)) +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<img src="05_factors_files/figure-revealjs/unnamed-chunk-4-1.png" width="288" />
+<img src="05_factors_files/figure-revealjs/unnamed-chunk-5-1.png" width="288" />
 </p>
 </div>
 </section><section id="data-types-checking-and-casting" class="slide level2">

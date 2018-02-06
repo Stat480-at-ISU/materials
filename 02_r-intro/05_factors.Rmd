@@ -13,6 +13,11 @@ output:
 
 ## Factors
 
+The solutions to the your turns in this slide deck are available as:
+```{r, eval=FALSE}
+learnr:: run_tutorial("factors", package="yourturns480")
+```
+
 - A special type of variable to indicate categories
 - both *labels* and their *order* (i.e. numbers) 
 - By default text variables are stored in factors during input
