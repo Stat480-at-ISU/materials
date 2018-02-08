@@ -113,3 +113,17 @@ ggplot(data = Titanic)  +
 - <span style="color:white">In the previous barchart change the `position` parameter to `"fill"`. Interpret.</span>
 - <span style="color:white">Read up on the `position` parameter in `?geom_bar`. Try out other options for `position`.</span>
 
+# Why no pie charts?
+
+## Order of tasks (easiest to hardest)
+
+Cleveland and McGill (1984):
+
+1. Position along a common scale
+2. Positions along non-aligned scales
+3. Length, direction, angle
+6. Area
+7. Volume, curvature
+9. Shading, color saturation
+
+Implications for drawing charts: make main comparisons as easy as possible (i.e. map as position along a common scale). Additional messages can be mapped on other aesthetics.
