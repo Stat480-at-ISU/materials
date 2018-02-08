@@ -1,0 +1,115 @@
+---
+title: "Stat 480: Visualizing factor variables"
+author: Heike Hofmann
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+# Factors in visualizations
+
+## Visualizing factors
+
+- visualize factors directly: barcharts
+- use factors in aesthetics (`colour`, `fill`, `shape`) or for facetting
+- always make sure that the order in factors is sensible!
+
+
+## Note: factors for fill color
+
+In area plots (histograms and barcharts for now) use aesthetic `fill` for showing colored areas.
+
+Only factor variables can be mapped to `fill`
+
+## Example: 
+
+
+```{r, message = FALSE}
+library(classdata)
+library(ggplot2)
+ggplot(fbi, aes(x = Type, fill=Year)) + geom_bar() # nothing happens
+```
+
+##
+
+Not sensible, but the colors show up:
+
+```{r}
+ggplot(fbi, aes(x = Type, fill=factor(Year))) + geom_bar() 
+```
+
+## Example: Survival on the Titanic
+
+The object `Titanic` is a table of a break down of survival of passengers and crew on board the Titanic by gender and age.
+
+```{r, message = FALSE}
+library(classdata)
+head(Titanic)
+```
+
+## Barcharts of all variables
+
+<div class="double">
+<p class="double-flow">
+```{r, fig.width=3, fig.height = 2}
+ggplot(Titanic, aes(x = Survived)) + geom_bar()
+
+ggplot(Titanic, aes(x = Sex)) + geom_bar()
+```
+</p><p class="double-flow">
+```{r, fig.width=3, fig.height = 2}
+ggplot(Titanic, aes(x = Class)) + geom_bar()
+
+ggplot(Titanic, aes(x = Age)) + geom_bar()
+```
+</p>
+</div>
+
+
+## `position="fill"`
+
+<div class="double">
+<p class="double-flow">
+```{r, fig.width=3, fig.height = 2}
+ggplot(Titanic, aes(x = Survived, fill=Survived)) + geom_bar(position="fill")
+
+ggplot(Titanic, aes(x = Sex, fill=Survived)) + geom_bar(position="fill")
+```
+</p><p class="double-flow">
+```{r, fig.width=3, fig.height = 2}
+ggplot(Titanic, aes(x = Class, fill=Survived)) + geom_bar(position="fill")
+
+ggplot(Titanic, aes(x = Age, fill=Survived)) + geom_bar(position = "fill")
+```
+</p>
+</div>
+
+## Two and more factor variables
+
+- besides facetting and position, use
+- *mosaic plots*
+- there are extension packages for `ggplot2`, e.g. `ggmosaic`
+
+## Mosaicplots
+
+```{r, fig.width=10, fig.height = 4, message=FALSE}
+library(ggmosaic)
+ggplot(data = Titanic)  + 
+  geom_mosaic(aes(x = product(Sex), fill=Survived, weight=1)) +
+  facet_grid(Age~Class)
+```
+
+## Your turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">For this your turn use the `Titanic` object from the `classdata` package. (you might have to update the package using the command `devtools::github_install("heike/classdata")`) </span>
+
+- <span style="color:white">Draw a barchart of Gender. Interpret.</span>
+- <span style="color:white">Map survival to fill color in the barchart of Gender. Interpret.</span>
+- <span style="color:white">In the previous barchart change the `position` parameter to `"fill"`. Interpret.</span>
+- <span style="color:white">Read up on the `position` parameter in `?geom_bar`. Try out other options for `position`.</span>
+
