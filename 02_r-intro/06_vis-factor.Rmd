@@ -113,6 +113,8 @@ ggplot(data = Titanic)  +
 - <span style="color:white">In the previous barchart change the `position` parameter to `"fill"`. Interpret.</span>
 - <span style="color:white">Read up on the `position` parameter in `?geom_bar`. Try out other options for `position`.</span>
 
+<span style="color:white"><p style="font-size:20px">Solution in `learnr::run_tutorial("factors", package="yourturns480")`</p></span>
+
 # Why no pie charts?
 
 ## Order of tasks (easiest to hardest)

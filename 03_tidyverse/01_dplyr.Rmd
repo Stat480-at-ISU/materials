@@ -9,14 +9,16 @@ output:
     theme: ribbon
 ---
 
-# tidyverse
+## Data management in R: the tidyverse 
+
+<img src="images/tidyverse.jpeg" alt="" width=600>
+
 
 ## Outline
 
-- R is a calculator
-- five commands to look at objects
-- extracting pieces
-- a first glimpse at data
+- elements of data management: filtering, sorting, and aggregations
+- the pipe operator `%>%`
+- lots of examples
 
 ## `tidyverse`
 
@@ -47,9 +49,12 @@ There are a couple of primary `dplyr` *verbs*, representing distinct data analys
 
 all functions of the tidyverse have `data` as their first element
 
-Important: do not use `$` notation for variables within the function 
+Important: do not use `$` notation for variables within these functions, e.g: 
 
 `ggplot(data = fbi, aes(x = Year, y = Count)) + geom_point()`
+
+
+`filter(fbi, Year>=2019, State=="Iowa")`
 
 
 ## The pipe operator `%>%`
@@ -81,30 +86,55 @@ fbi %>%
     geom_point()
 ```
 
+## `filter`
+
+select a subset of the observations (horizontal selection):
+
+```{r, message=FALSE}
+library(classdata)
+library(dplyr)
+
+fbi %>% filter(Type=="Burglary", Year==2014) %>% head()
+```
+
+
+
 ## `arrange`
 
 `arrange` sorts a data set by the values in one or more variables
 
 Successive variables break ties in previous ones
 
-`desc` stands for descending, otherwise rows are sorted smalles to largest
+`desc` stands for descending, otherwise rows are sorted from smallest to largest
 
 ```{r, message=FALSE}
-library(classdata)
-library(dplyr)
-fbi %>% arrange(desc(Year), Type, desc(Count))
+fbi %>% arrange(desc(Year), Type, desc(Count)) %>% head()
 ```
 
 ## `select`
 
-Select specific variables of a data frame
+Select specific variables of a data frame (vertical selection):
 
 ```{r}
 fbi %>% arrange(desc(Year), Type, desc(Count)) %>%
-  select(State, Year, Count, Type)
+  select(Type, Count, State, Year) %>% head()
 ```
 
+## `mutate`
+
+Introduce a new variable into a data set or transform/update an old variable:
+
+```{r}
+fbi %>% mutate(Rate = Count/Population*70000) %>% head()
+```
+
+
 ## `summarise`
+
+
+
+summarize observations into a (set of) one-number statistic(s):
+
 
 ```{r}
 fbi %>% 
@@ -120,3 +150,87 @@ fbi %>%
     summarise(mean_rate = mean(Count/Population*70000, na.rm=TRUE), 
               sd_rate = sd(Count/Population*70000, na.rm = TRUE))
 ```
+
+
+# Let's use these tools
+
+
+
+## French fries data
+
+```{r}
+data(french_fries, package="reshape2")
+```
+
+- data from sensory experiment conducted at Iowa State University in 2004
+- investigators were interested in comparing effects of three different fryer oils on taste of fries
+
+```{r}
+french_fries %>% head()
+```
+
+## Did the french fries taste worse over time?
+
+> - How do we define 'tasting well'? 
+>   - Higher values of potato-y and buttery, lower values of grassy, rancid, painty
+> - Compute averages of these scales for each time point
+> - combination of `group_by` and `summarise`
+
+## Did the french fries taste worse over time? (2)
+
+```{r}
+french_fries %>% group_by(time) %>% summarise(
+  m.potato = mean(potato, na.rm=TRUE),
+  m.buttery = mean(buttery, na.rm=TRUE),
+  m.grassy = mean(grassy, na.rm=TRUE),
+  m.rancid = mean(rancid, na.rm=TRUE),
+  m.painty = mean(painty, na.rm=TRUE)
+) %>% head()
+```
+
+## Did the french fries taste worse over time? (3)
+
+```{r, echo=FALSE}
+library(ggplot2)
+
+avgs <- french_fries %>% group_by(time) %>% summarise(
+  m.potato = mean(potato, na.rm=TRUE),
+  m.buttery = mean(buttery, na.rm=TRUE),
+  m.grassy = mean(grassy, na.rm=TRUE),
+  m.rancid = mean(rancid, na.rm=TRUE),
+  m.painty = mean(painty, na.rm=TRUE)
+)
+```
+
+```{r}
+avgs %>% ggplot(aes(x = time)) + 
+  geom_point(aes(y = m.potato)) +
+  geom_point(shape=2, aes(y=m.rancid)) + 
+  ylab("Average")
+```
+
+
+## Your turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">For this your turn use the `french_fries` data from the `reshape2` package: `data(french_fries, package="reshape2")` </span>
+
+- <span style="color:white">Do ratings of potato-y show a difference between the different oils over time?</span>
+- <span style="color:white">Draw a plot of the average potato-y rating by time, color by treatment.</span>
+- <span style="color:white">How does this plot look like for the rancid rating?</span>
+
+<span style="color:white"><p style="font-size:20px">Solution in `learnr::run_tutorial("dplyr", package="yourturns480")`</p></span>
+
+
+## Your turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white">For this your turn use the `french_fries` data from the `reshape2` package: `data(french_fries, package="reshape2")` </span>
+
+- <span style="color:white">Do ratings of potato-y show a difference between the different oils over time?</span>
+- <span style="color:white">Draw a plot of the average potato-y rating by time, color by treatment.</span>
+- <span style="color:white">How does this plot look like for the rancid rating?</span>
+
+<span style="color:white"><p style="font-size:20px">Solution in `learnr::run_tutorial("dplyr", package="yourturns480")`</p></span>
