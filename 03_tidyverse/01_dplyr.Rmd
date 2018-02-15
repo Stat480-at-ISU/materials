@@ -227,10 +227,39 @@ avgs %>% ggplot(aes(x = time)) +
 
 <img class="cover" src="images/blue.jpeg" alt="" width=2000>
 
-<span style="color:white">For this your turn use the `french_fries` data from the `reshape2` package: `data(french_fries, package="reshape2")` </span>
+<span style="color:white"><p style="font-size:20px">For this your turn use the `french_fries` data from the `reshape2` package: `data(french_fries, package="reshape2")`</style> </span>
 
-- <span style="color:white">Do ratings of potato-y show a difference between the different oils over time?</span>
-- <span style="color:white">Draw a plot of the average potato-y rating by time, color by treatment.</span>
-- <span style="color:white">How does this plot look like for the rancid rating?</span>
+- <span style="color:white">How much consistency do we see between ratings? For buttery and rancid ratings find the mean and the absolute difference between the two replicates (for each subject, each treatment and each time point). Use `dplyr` functions to find this summary dataset.</span>
+- <span style="color:white">Are ratings more different between the two scales? What would you need to draw a side-by-side boxplot of the two ratings? Describe in words.</span>
+- <span style="color:white">Are some subjects in the study more consistent than others?  Show the variability in the potato-y ratings by subjects. Order subjects from least variability to most.
+</span>
 
-<span style="color:white"><p style="font-size:20px">Solution in `learnr::run_tutorial("dplyr", package="yourturns480")`</p></span>
+<span>
+<p style="font-size:20px">Solution in `learnr::run_tutorial("dplyr", package="yourturns480")`</p></span>
+
+## Your turn {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+<span style="color:white"><p style="font-size:20px">For this your turn use the `french_fries` data from the `reshape2` package: `data(french_fries, package="reshape2")`</style> </span>
+
+- <span style="color:white">For each subject, determine how many records are missing (either absent or NA).  </span>
+- <span style="color:white">Expand on the above summary of missing values by taking time into account. Plot the result: plot number of missing values by week, facet by subject. Is the result surprising?</span>
+
+<span>
+<p style="font-size:20px">Solution in `learnr::run_tutorial("dplyr", package="yourturns480")`</p></span>
+
+
+```{r, eval=FALSE, echo=FALSE}
+miss <- french_fries %>% 
+  group_by(subject, time) %>%
+  tidyr::complete(subject, time, fill=list(treatment=NA)) %>%
+  summarise(
+   missing = 2*3*5-length(na.omit(c(buttery, rancid, potato, grassy, painty)))
+ ) %>% arrange(desc(missing))
+
+miss %>% 
+  ggplot(aes(x = time, y = missing)) + geom_point() +
+  facet_wrap(~subject)
+
+```

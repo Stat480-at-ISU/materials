@@ -283,13 +283,34 @@ Solution in <code>learnr::run_tutorial(&quot;dplyr&quot;, package=&quot;yourturn
 </section><section id="your-turn-1" class="slide level2 white">
 <h2>Your turn</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
-<p><span style="color:white">For this your turn use the <code>french_fries</code> data from the <code>reshape2</code> package: <code>data(french_fries, package=&quot;reshape2&quot;)</code> </span></p>
-<ul>
-<li><span style="color:white">Do ratings of potato-y show a difference between the different oils over time?</span></li>
-<li><span style="color:white">Draw a plot of the average potato-y rating by time, color by treatment.</span></li>
-<li><span style="color:white">How does this plot look like for the rancid rating?</span></li>
-</ul>
 <span style="color:white">
+<p style="font-size:20px">
+For this your turn use the <code>french_fries</code> data from the <code>reshape2</code> package: <code>data(french_fries, package=&quot;reshape2&quot;)</code>
+</style>
+<p></span></p>
+<ul>
+<li><span style="color:white">How much consistency do we see between ratings? For buttery and rancid ratings find the mean and the absolute difference between the two replicates (for each subject, each treatment and each time point). Use <code>dplyr</code> functions to find this summary dataset.</span></li>
+<li><span style="color:white">Are ratings more different between the two scales? What would you need to draw a side-by-side boxplot of the two ratings? Describe in words.</span></li>
+<li><span style="color:white">Are some subjects in the study more consistent than others? Show the variability in the potato-y ratings by subjects. Order subjects from least variability to most. </span></li>
+</ul>
+<span>
+<p style="font-size:20px">
+Solution in <code>learnr::run_tutorial(&quot;dplyr&quot;, package=&quot;yourturns480&quot;)</code>
+</p>
+<p></span></p>
+</section><section id="your-turn-2" class="slide level2 white">
+<h2>Your turn</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
+<span style="color:white">
+<p style="font-size:20px">
+For this your turn use the <code>french_fries</code> data from the <code>reshape2</code> package: <code>data(french_fries, package=&quot;reshape2&quot;)</code>
+</style>
+<p></span></p>
+<ul>
+<li><span style="color:white">For each subject, determine how many records are missing (either absent or NA). </span></li>
+<li><span style="color:white">Expand on the above summary of missing values by taking time into account. Plot the result: plot number of missing values by week, facet by subject. Is the result surprising?</span></li>
+</ul>
+<span>
 <p style="font-size:20px">
 Solution in <code>learnr::run_tutorial(&quot;dplyr&quot;, package=&quot;yourturns480&quot;)</code>
 </p>
