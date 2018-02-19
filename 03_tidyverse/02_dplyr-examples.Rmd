@@ -1,6 +1,6 @@
 ---
-title: "dplyr examples"
-author: https://github.com/mangothecat/rmdshower
+title: "dplyr examples: group_by and summarise"
+author: Heike Hofmann
 ratio: 16x10
 output:
   rmdshower::shower_presentation:
