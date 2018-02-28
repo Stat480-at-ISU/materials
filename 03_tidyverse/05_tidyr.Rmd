@@ -128,6 +128,10 @@ ffm <- french_fries %>%
 ffm
 ```
 
+## 
+
+![](images/gather-spread.png)
+
 ## Spread
 
 ```{r}
@@ -163,6 +167,12 @@ ffm %>% spread(key = rep, value = score) %>%
 - <span style="color:white">Only consider crime rates for Iowa and Minnesota. Use `spread` to create incidence columns for each of these states. Plot crimes in Iowa against crimes in Minnesota, colour by type of crime. Note: you need to exclude some variables. </span>
 
 
+## Where `spread` is tricky
+
+- `spread` is the inverse operation of `gather`
+- when we use `gather` the key information is duplicated
+- when using `spread` we need to make sure that the information outside the key and value is identical for all levels (and combinations of levels) of the `key` variable.
+- If the info is not identical across levels, missing values are introduced into the new data set.
 
 
 

@@ -3655,6 +3655,9 @@ ffm</code></pre></div>
 ## 3478   10         3      78   2  painty   1.4
 ## 3479   10         3      86   1  painty  10.5
 ## 3480   10         3      86   2  painty   9.4</code></pre>
+</section><section id="section" class="slide level2">
+<h2></h2>
+<p><img src="images/gather-spread.png" /></p>
 </section><section id="spread" class="slide level2">
 <h2>Spread</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ffm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">spread</span>(<span class="dt">key =</span> rep, <span class="dt">value =</span> score)</code></pre></div>
@@ -5399,7 +5402,7 @@ ffm</code></pre></div>
 ## 1738   10         3      86  painty 10.5  9.4
 ## 1739   10         3      86  potato  2.5  2.5
 ## 1740   10         3      86  rancid  7.0  8.2</code></pre>
-</section><section id="section" class="slide level2">
+</section><section id="section-1" class="slide level2">
 <h2></h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ffm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">spread</span>(<span class="dt">key =</span> rep, <span class="dt">value =</span> score) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">1</span><span class="st">`</span>, <span class="dt">y =</span> <span class="st">`</span><span class="dt">2</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span>
@@ -5421,6 +5424,14 @@ ffm</code></pre></div>
 <ul>
 <li><span style="color:white">Use <code>gather</code> from the <code>tidyr</code> package to combine the variables for the different types of crimes into one variable. Call the key-value pair “Type” and “Incidences”. Compute a crime rate</span></li>
 <li><span style="color:white">Only consider crime rates for Iowa and Minnesota. Use <code>spread</code> to create incidence columns for each of these states. Plot crimes in Iowa against crimes in Minnesota, colour by type of crime. Note: you need to exclude some variables. </span></li>
+</ul>
+</section><section id="where-spread-is-tricky" class="slide level2">
+<h2>Where <code>spread</code> is tricky</h2>
+<ul>
+<li><code>spread</code> is the inverse operation of <code>gather</code></li>
+<li>when we use <code>gather</code> the key information is duplicated</li>
+<li>when using <code>spread</code> we need to make sure that the information outside the key and value is identical for all levels (and combinations of levels) of the <code>key</code> variable.</li>
+<li>If the info is not identical across levels, missing values are introduced into the new data set.</li>
 </ul>
 </section>
 
