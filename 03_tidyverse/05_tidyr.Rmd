@@ -132,6 +132,53 @@ ffm
 
 ![](images/gather-spread.png)
 
+## Example from the homework
+
+Reading the data 
+
+```{r, warning=FALSE, message = FALSE}
+library(tidyverse)
+starwars <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/star-wars-survey/StarWars.csv")
+
+# the following lines are necessary to make the second line of the file 
+# part of the names:
+line1 <- names(starwars)
+line2 <- unlist(starwars[1,])
+varnames <- paste(line1, line2)
+# clean up some of the multibyte characters:
+names(starwars) <- stringi::stri_trans_general(varnames, "latin-ascii")
+
+starwars <- starwars[-1,]
+```
+
+## Example from the homework (2)
+
+Cleaning the data
+
+```{r}
+ranks <- starwars %>% filter(`Have you seen any of the 6 films in the Star Wars franchise? Response`=="Yes") %>% 
+  gather("episode", "rank", 10:15) %>%
+  mutate(
+    rank = as.numeric(rank),
+    episode = gsub(".*(Episode [IV]*) .*", "\\1", episode)
+  ) 
+ranks %>% select(episode, rank)
+```
+
+## Example from the homework (3)
+
+Visualizing the result
+
+```{r}
+ranks %>% group_by(episode, `Gender Response`) %>%
+  summarise(
+    n = n(),
+    mean = mean(rank, na.rm=TRUE)
+  ) %>%
+  ggplot(aes(x = episode, y=mean, colour=`Gender Response`)) +
+  geom_point() + coord_flip()
+```
+
 ## Spread
 
 ```{r}

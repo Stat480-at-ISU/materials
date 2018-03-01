@@ -3658,6 +3658,56 @@ ffm</code></pre></div>
 </section><section id="section" class="slide level2">
 <h2></h2>
 <p><img src="images/gather-spread.png" /></p>
+</section><section id="example-from-the-homework" class="slide level2">
+<h2>Example from the homework</h2>
+<p>Reading the data</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+starwars &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/fivethirtyeight/data/master/star-wars-survey/StarWars.csv&quot;</span>)
+
+<span class="co"># the following lines are necessary to make the second line of the file </span>
+<span class="co"># part of the names:</span>
+line1 &lt;-<span class="st"> </span><span class="kw">names</span>(starwars)
+line2 &lt;-<span class="st"> </span><span class="kw">unlist</span>(starwars[<span class="dv">1</span>,])
+varnames &lt;-<span class="st"> </span><span class="kw">paste</span>(line1, line2)
+<span class="co"># clean up some of the multibyte characters:</span>
+<span class="kw">names</span>(starwars) &lt;-<span class="st"> </span>stringi<span class="op">::</span><span class="kw">stri_trans_general</span>(varnames, <span class="st">&quot;latin-ascii&quot;</span>)
+
+starwars &lt;-<span class="st"> </span>starwars[<span class="op">-</span><span class="dv">1</span>,]</code></pre></div>
+</section><section id="example-from-the-homework-2" class="slide level2">
+<h2>Example from the homework (2)</h2>
+<p>Cleaning the data</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ranks &lt;-<span class="st"> </span>starwars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="st">`</span><span class="dt">Have you seen any of the 6 films in the Star Wars franchise? Response</span><span class="st">`</span><span class="op">==</span><span class="st">&quot;Yes&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;episode&quot;</span>, <span class="st">&quot;rank&quot;</span>, <span class="dv">10</span><span class="op">:</span><span class="dv">15</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(
+    <span class="dt">rank =</span> <span class="kw">as.numeric</span>(rank),
+    <span class="dt">episode =</span> <span class="kw">gsub</span>(<span class="st">&quot;.*(Episode [IV]*) .*&quot;</span>, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">1&quot;</span>, episode)
+  ) 
+ranks <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(episode, rank)</code></pre></div>
+<pre><code>## # A tibble: 5,616 x 2
+##    episode    rank
+##    &lt;chr&gt;     &lt;dbl&gt;
+##  1 Episode I  3.00
+##  2 Episode I  1.00
+##  3 Episode I  5.00
+##  4 Episode I  5.00
+##  5 Episode I  1.00
+##  6 Episode I  6.00
+##  7 Episode I  4.00
+##  8 Episode I  5.00
+##  9 Episode I  1.00
+## 10 Episode I NA   
+## # ... with 5,606 more rows</code></pre>
+</section><section id="example-from-the-homework-3" class="slide level2">
+<h2>Example from the homework (3)</h2>
+<p>Visualizing the result</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ranks <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(episode, <span class="st">`</span><span class="dt">Gender Response</span><span class="st">`</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(
+    <span class="dt">n =</span> <span class="kw">n</span>(),
+    <span class="dt">mean =</span> <span class="kw">mean</span>(rank, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)
+  ) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> episode, <span class="dt">y=</span>mean, <span class="dt">colour=</span><span class="st">`</span><span class="dt">Gender Response</span><span class="st">`</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</code></pre></div>
+<p><img src="05_tidyr_files/figure-revealjs/unnamed-chunk-9-1.png" width="768" /></p>
 </section><section id="spread" class="slide level2">
 <h2>Spread</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ffm <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">spread</span>(<span class="dt">key =</span> rep, <span class="dt">value =</span> score)</code></pre></div>
@@ -5408,7 +5458,7 @@ ffm</code></pre></div>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">1</span><span class="st">`</span>, <span class="dt">y =</span> <span class="st">`</span><span class="dt">2</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>scale) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">colour =</span> <span class="st">&quot;grey50&quot;</span>)</code></pre></div>
 <pre><code>## Warning: Removed 9 rows containing missing values (geom_point).</code></pre>
-<p><img src="05_tidyr_files/figure-revealjs/unnamed-chunk-8-1.png" width="768" /></p>
+<p><img src="05_tidyr_files/figure-revealjs/unnamed-chunk-11-1.png" width="768" /></p>
 </section><section id="your-turn" class="slide level2 white">
 <h2>Your turn</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
