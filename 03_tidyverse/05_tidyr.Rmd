@@ -213,14 +213,40 @@ ffm %>% spread(key = rep, value = score) %>%
 - <span style="color:white">Use `gather` from the `tidyr` package to combine the variables for the different types of crimes into one variable. Call the key-value pair "Type" and "Incidences". Compute a crime rate</span>
 - <span style="color:white">Only consider crime rates for Iowa and Minnesota. Use `spread` to create incidence columns for each of these states. Plot crimes in Iowa against crimes in Minnesota, colour by type of crime. Note: you need to exclude some variables. </span>
 
+## Spread works as inverse of gather
+
+![](images/spread-gather-clean.png)
+
+## Front part is not identical - not collapsible
+
+![](images/spread-gather-unclean.png)
 
 ## Where `spread` is tricky
 
-- `spread` is the inverse operation of `gather`
+- `spread` is the (almost) inverse operation of `gather`
 - when we use `gather` the key information is duplicated
 - when using `spread` we need to make sure that the information outside the key and value is identical for all levels (and combinations of levels) of the `key` variable.
 - If the info is not identical across levels, missing values are introduced into the new data set.
 
+## `spread` in the example
 
+```{r, message=FALSE, warning=FALSE}
+library(classdata)
+fbi %>% filter(Year==2014, State %in% c("Iowa", "Minnesota"), Type=="Burglary")
+```
+Other state specific values don't allow spread to collapse the front part and introduce missing values:
 
+```{r}
+fbi %>% filter(Year==2014, State %in% c("Iowa", "Minnesota"), Type=="Burglary") %>% 
+  spread(State, Count)
+```
 
+## fixing `spread` in the example
+
+Negative selection of all state specific variables gets the example to "work": 
+
+```{r}
+fbi %>% filter(Year==2014, State %in% c("Iowa", "Minnesota"), Type=="Burglary") %>% 
+  select(-Abb, -Population) %>% 
+  spread(State, Count)
+```
