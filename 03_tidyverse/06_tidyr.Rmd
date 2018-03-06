@@ -58,7 +58,7 @@ Use `dplyr` functionality to answer the following questions:
 
   1. What is the total amount of campaign expenditure?
   2. What is the single largest cost in the campaign expenditures?
-  3. What time frame does the campaign expenditure cover?
+<!--  3. What time frame does the campaign expenditure cover?-->
   4. Plot geographic longitude and latitude. Do campaign expenditures stay in the State of IA? Investigate oddities.
 
 

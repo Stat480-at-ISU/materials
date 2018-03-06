@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stat 480 - cleaning data: messy 3 and 4</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="07-messy-3_files/rmdshower/node_modules/shower-ribbon/styles/screen-4x3.css">
+  <link rel="stylesheet" href="07-messy-3_files/rmdshower/style-common.css">
+  <link rel="stylesheet" href="07-messy-3_files/rmdshower/style-ribbon.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+  <script src="07-messy-3_files/rmdshower/auto-render.min.js" type="text/javascript"></script>
+  
+  
+    <style type="text/css">
+   div.sourceCode { overflow-x: auto; }
+   table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+     margin: 0; padding: 0; vertical-align: baseline; border: none; }
+   table.sourceCode { width: 100%; line-height: 100%; }
+   td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+   td.sourceCode { padding-left: 5px; }
+   code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+   code > span.dt { color: #902000; } /* DataType */
+   code > span.dv { color: #40a070; } /* DecVal */
+   code > span.bn { color: #40a070; } /* BaseN */
+   code > span.fl { color: #40a070; } /* Float */
+   code > span.ch { color: #4070a0; } /* Char */
+   code > span.st { color: #4070a0; } /* String */
+   code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+   code > span.ot { color: #007020; } /* Other */
+   code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+   code > span.fu { color: #06287e; } /* Function */
+   code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+   code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+   code > span.cn { color: #880000; } /* Constant */
+   code > span.sc { color: #4070a0; } /* SpecialChar */
+   code > span.vs { color: #4070a0; } /* VerbatimString */
+   code > span.ss { color: #bb6688; } /* SpecialString */
+   code > span.im { } /* Import */
+   code > span.va { color: #19177c; } /* Variable */
+   code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+   code > span.op { color: #666666; } /* Operator */
+   code > span.bu { } /* BuiltIn */
+   code > span.ex { } /* Extension */
+   code > span.pp { color: #bc7a00; } /* Preprocessor */
+   code > span.at { color: #7d9029; } /* Attribute */
+   code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+   code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+   code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+   code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  
+  
+  
+</head>
+
+<body class="shower list">
+
+  <header class="caption">
+    <h1>Stat 480 - cleaning data: messy 3 and 4</h1>
+    <p>Heike Hofmann</p>
+  </header>
+
+    
+  
+<section id="dealing-with-messy-3-and-4" class="titleslide slide level1"><h2 class="shout">Dealing with Messy (3) and (4)</h2></section></section>
+<section id="keys-and-measurements" class="titleslide slide level1"><h2 class="shout">Keys and Measurements</h2></section><section id="finding-your-keys---example-1" class="slide level2">
+<h2>Finding your keys - Example (1)</h2>
+<p>100 patients are randomly assigned to a treatment for heart attack, measured 5 different clinical outcomes.</p>
+</section><section id="finding-your-keys---example-1-1" class="slide level2">
+<h2>Finding your keys - Example (1)</h2>
+<p>100 patients are randomly assigned to a treatment for heart attack, measured 5 different clinical outcomes.</p>
+<ul>
+<li>key: patient ID</li>
+<li>factor variable (design): treatment</li>
+<li>measured variables: 5 clinical outcomes</li>
+</ul>
+</section><section id="finding-your-keys---example-2" class="slide level2">
+<h2>Finding your keys - Example (2)</h2>
+<p>Randomized complete block trial with four fields, four different types of fertilizer, over four years. Recorded total corn yield, and fertilizer run off</p>
+</section><section id="finding-your-keys---example-2-1" class="slide level2">
+<h2>Finding your keys - Example (2)</h2>
+<p>Randomized complete block trial with four fields, four different types of fertilizer, over four years. Recorded total corn yield, and fertilizer run off</p>
+<ul>
+<li>key: fields, types of fertilizer, year</li>
+<li>measurement: total corn yield, fertilizer run off</li>
+</ul>
+</section><section id="finding-your-keys---example-3" class="slide level2">
+<h2>Finding your keys - Example (3)</h2>
+<p>Cluster sample of twenty students in thirty different schools. For each school, recorded distance from ice rink. For each student, asked how often they go ice skating, and whether or not their parents like ice skating</p>
+</section><section id="finding-your-keys---example-3-1" class="slide level2">
+<h2>Finding your keys - Example (3)</h2>
+<p>Cluster sample of twenty students in thirty different schools. For each school, recorded distance from ice rink. For each student, asked how often they go ice skating, and whether or not their parents like ice skating</p>
+<ul>
+<li>key: student ID, school ID</li>
+<li>measurement: distance to rink, #times ice skating, parents’ preference</li>
+</ul>
+</section><section id="finding-your-keys---example-4" class="slide level2">
+<h2>Finding your keys - Example (4)</h2>
+<p>For each person, recorded age, sex, height and target weight, and then at multiple times recorded their weight</p>
+</section><section id="finding-your-keys---example-4-1" class="slide level2">
+<h2>Finding your keys - Example (4)</h2>
+<p>For each person, recorded age, sex, height and target weight, and then at multiple times recorded their weight</p>
+<ul>
+<li>key: <em>patient ID</em>, date</li>
+<li>measurement: <em>age, sex, height, target weight</em>, current weight</li>
+</ul>
+<p><em>only patient ID is needed for variables in italics</em></p>
+</section><section id="messy-3" class="slide level2">
+<h2>Messy (3)</h2>
+<p>Messy (3): <em>Multiple observational units are stored in the same table.</em></p>
+<p>What does that mean? The <em>key is split</em>, i.e. for some values all key variables are necessary, while other values only need some key variables.</p>
+<p><img src="images/normal-not-2.png" /></p>
+</section><section id="why-do-we-need-to-take-care-of-split-keys" class="slide level2">
+<h2>Why do we need to take care of split keys?</h2>
+<ul>
+<li>Data redundancy introduces potential problems (same student <em>should</em> have the same student ID)</li>
+<li>to check data consistency, we split data set into parts - this process is called <em>normalizing</em></li>
+<li>normalization reduces overall data size</li>
+<li>useful way of thinking about objects under study</li>
+</ul>
+</section><section id="tidying-messy-3" class="slide level2">
+<h2>Tidying Messy (3)</h2>
+<p>Splitting into separate datasets:</p>
+<p><img src="images/normal-split.png" /></p>
+</section><section id="example-box-office-gross" class="slide level2">
+<h2>Example: Box office gross</h2>
+<p>The-Numbers website publishes <a href="http://www.the-numbers.com/weekend-box-office-chart">weekly charts</a> of the gross income of all movies playing across the US. A set of <a href="../data/boxoffice.csv">scraped data</a> with movies for the last two years is available in the repo.</p>
+<pre><code>##   Rank Rank.Last.Week         Movie        Distributor     Gross Change
+## 1    1              1 Black Panther        Walt Disney 111658835    -45
+## 2    2             NA    Game Night       Warner Bros.  17005332     NA
+## 3    3              2  Peter Rabbit      Sony Pictures  12760382    -27
+## 4    4             NA  Annihilation Paramount Pictures  11071584     NA
+##   Thtrs. Per.Thtr. Total.Gross Week       Date
+## 1   4020     27776   403613257    2 2018-02-23
+## 2   3488      4875    17005332    1 2018-02-23
+## 3   3707      3442    71506084    3 2018-02-23
+## 4   2012      5503    11071584    1 2018-02-23</code></pre>
+<p>What are the key variables? Why is the key split?</p>
+</section><section id="keys-and-measurements-1" class="slide level2">
+<h2>Keys and measurements</h2>
+<ul>
+<li>Measurement variables: <code>Gross</code>, <code>Thtrs.</code></li>
+<li>Key variables: <code>Movie</code> name, <code>Date</code> and <code>Distributor</code>.</li>
+<li>All other variables are derived from these variables</li>
+<li>good practice: re-calculate the derived variabes to check for consistency.</li>
+</ul>
+</section><section id="taking-care-of-the-split-key" class="slide level2">
+<h2>Taking care of the split key</h2>
+<p>Plan: separate movie information from box office information</p>
+<p>First idea: take all unique combinations of Movie and Distributor</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies &lt;-<span class="st"> </span>box <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Movie, Distributor) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unique</span>()</code></pre></div>
+<p>Does that make a movie unique?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(Movie) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n))</code></pre></div>
+<pre><code>## # A tibble: 1,999 x 2
+##    Movie                    n
+##    &lt;fct&gt;                &lt;int&gt;
+##  1 Beauty and the Beast     2
+##  2 Breathe                  2
+##  3 Girlhood                 2
+##  4 Gold                     2
+##  5 Mama Africa              2
+##  6 Reset                    2
+##  7 The Dinner               2
+##  8 The Witness              2
+##  9 Youth                    2
+## 10 ’71                      1
+## # ... with 1,989 more rows</code></pre>
+</section><section id="split-key---take-2" class="slide level2">
+<h2>Split key - take 2</h2>
+<p>Second idea: ideally we would like a release date. BUT: we only have Week info.</p>
+<p>Get the Week info for the first time we see each Movie and Distributor combo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">box &lt;-<span class="st"> </span>box <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Movie, Distributor) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">firstSeen =</span> <span class="kw">min</span>(Week))
+<span class="kw">head</span>(box)</code></pre></div>
+<pre><code>## # A tibble: 6 x 12
+## # Groups:   Movie, Distributor [6]
+##    Rank Rank.Last.Week Movie    Distributor  Gross Change Thtrs. Per.Thtr.
+##   &lt;int&gt;          &lt;int&gt; &lt;fct&gt;    &lt;fct&gt;        &lt;dbl&gt;  &lt;int&gt;  &lt;int&gt;     &lt;int&gt;
+## 1     1              1 Black P… Walt Disney 1.12e⁸    -45   4020     27776
+## 2     2             NA Game Ni… Warner Bro… 1.70e⁷     NA   3488      4875
+## 3     3              2 Peter R… Sony Pictu… 1.28e⁷    -27   3707      3442
+## 4     4             NA Annihil… Paramount … 1.11e⁷     NA   2012      5503
+## 5     5              3 Fifty S… Universal   7.15e⁶    -59   3265      2189
+## 6     6              4 Jumanji… Sony Pictu… 5.65e⁶    -29   2519      2243
+## # ... with 4 more variables: Total.Gross &lt;int&gt;, Week &lt;int&gt;, Date &lt;fct&gt;,
+## #   firstSeen &lt;dbl&gt;</code></pre>
+</section><section id="movie-data" class="slide level2">
+<h2>Movie data</h2>
+<p>Now extract all the information for movies we first see:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies &lt;-<span class="st"> </span>box <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Week <span class="op">==</span><span class="st"> </span>firstSeen) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Movie, Distributor, Date, Week)
+movies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(Week))</code></pre></div>
+<pre><code>## # A tibble: 2,010 x 4
+## # Groups:   Movie, Distributor [2,008]
+##    Movie                    Distributor          Date        Week
+##    &lt;fct&gt;                    &lt;fct&gt;                &lt;fct&gt;      &lt;int&gt;
+##  1 The Fallen Idol          Rialto Pictures      2016-05-27  3472
+##  2 The Third Man            Rialto Pictures      2015-06-26  3413
+##  3 Bob le flambeur          Triumph Releasing    2018-01-05  3080
+##  4 Elevator to the Gallows  Rialto Pictures      2016-08-05  2879
+##  5 Shakespeare Wallah       Cohen Media Group    2017-11-10  2695
+##  6 Marnie                   &quot;&quot;                   2015-05-22  2682
+##  7 Band of Outsiders        Rialto Pictures      2016-05-06  2617
+##  8 The Battle of Algiers    Rialto Pictures      2016-10-07  2560
+##  9 Night of the Living Dead Walter Reade Organi… 2017-10-13  2559
+## 10 The Lion in Winter       &quot;&quot;                   2016-12-16  2512
+## # ... with 2,000 more rows</code></pre>
+</section>
+
+  <!--
+  To hide progress bar from entire presentation
+  just remove “progress” element.
+  -->
+  <!-- <div class="progress"></div> -->
+  <script src="07-messy-3_files/rmdshower/node_modules/shower/node_modules/shower-core/shower.min.js"></script>
+  <!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+  <!-- Photos by John Carey, fiftyfootshadows.net -->
+
+    <script>renderMathInElement(document.body);</script>
+  
+  
+</body>
+</html>
