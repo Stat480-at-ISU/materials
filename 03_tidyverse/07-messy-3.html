@@ -64,7 +64,10 @@
 
     
   
-<section id="dealing-with-messy-3-and-4" class="titleslide slide level1"><h2 class="shout">Dealing with Messy (3) and (4)</h2></section></section>
+<section id="dealing-with-messy-3" class="titleslide slide level1"><h2 class="shout">Dealing with Messy (3)</h2></section><section id="reminder" class="slide level2">
+<h2>Reminder</h2>
+<p>Messy (3): <em>Multiple observational units are stored in the same table.</em></p>
+</section>
 <section id="keys-and-measurements" class="titleslide slide level1"><h2 class="shout">Keys and Measurements</h2></section><section id="finding-your-keys---example-1" class="slide level2">
 <h2>Finding your keys - Example (1)</h2>
 <p>100 patients are randomly assigned to a treatment for heart attack, measured 5 different clinical outcomes.</p>
@@ -126,86 +129,124 @@
 <p><img src="images/normal-split.png" /></p>
 </section><section id="example-box-office-gross" class="slide level2">
 <h2>Example: Box office gross</h2>
-<p>The-Numbers website publishes <a href="http://www.the-numbers.com/weekend-box-office-chart">weekly charts</a> of the gross income of all movies playing across the US. A set of <a href="../data/boxoffice.csv">scraped data</a> with movies for the last two years is available in the repo.</p>
-<pre><code>##   Rank Rank.Last.Week         Movie        Distributor     Gross Change
-## 1    1              1 Black Panther        Walt Disney 111658835    -45
-## 2    2             NA    Game Night       Warner Bros.  17005332     NA
-## 3    3              2  Peter Rabbit      Sony Pictures  12760382    -27
-## 4    4             NA  Annihilation Paramount Pictures  11071584     NA
-##   Thtrs. Per.Thtr. Total.Gross Week       Date
-## 1   4020     27776   403613257    2 2018-02-23
-## 2   3488      4875    17005332    1 2018-02-23
-## 3   3707      3442    71506084    3 2018-02-23
-## 4   2012      5503    11071584    1 2018-02-23</code></pre>
+<p>The-Numbers website publishes <a href="http://www.the-numbers.com/weekend-box-office-chart">weekly charts</a> of the gross income of all movies playing across the US. A set of cleaned data called <code>box</code> with movies for the last five years is available in the <code>classdata</code> package.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># devtools::install_github(&quot;heike/classdata&quot;)</span>
+<span class="kw">library</span>(classdata)
+<span class="kw">head</span>(box, <span class="dv">4</span>)</code></pre></div>
+<pre><code>##   Rank Rank.Last.Week         Movie      Distributor    Gross Change
+## 1    1              1 Black Panther      Walt Disney 66306935    -41
+## 2    2             NA   Red Sparrow 20th Century Fox 16853422     NA
+## 3    3             NA    Death Wish              MGM 13010267     NA
+## 4    4              2    Game Night     Warner Bros. 10412496    -39
+##   Thtrs. Per Thtr. Total.Gross Week       Date
+## 1   4084     16236   501706972    3 2018-03-02
+## 2   3056      5515    16853422    1 2018-03-02
+## 3   2847      4570    13010267    1 2018-03-02
+## 4   3488      2985    33240262    2 2018-03-02</code></pre>
 <p>What are the key variables? Why is the key split?</p>
 </section><section id="keys-and-measurements-1" class="slide level2">
 <h2>Keys and measurements</h2>
 <ul>
-<li>Measurement variables: <code>Gross</code>, <code>Thtrs.</code></li>
 <li>Key variables: <code>Movie</code> name, <code>Date</code> and <code>Distributor</code>.</li>
+<li>Measurement variables: <code>Gross</code>, <code>Thtrs.</code></li>
 <li>All other variables are derived from these variables</li>
 <li>good practice: re-calculate the derived variabes to check for consistency.</li>
 </ul>
 </section><section id="taking-care-of-the-split-key" class="slide level2">
 <h2>Taking care of the split key</h2>
 <p>Plan: separate movie information from box office information</p>
-<p>First idea: take all unique combinations of Movie and Distributor</p>
+<p>Idea for separation: we want to get a set of movies together with their Distributor and ideally their release date (which we do not have).</p>
+<p>Instead of release date we want to get the date of the first time that we see a movie in the boxoffice.</p>
+<p>Let’s also keep track of how many weeks a movie has been released at that time (should be 1 - when will it be different for sure?)</p>
+</section><section id="your-turn" class="slide level2 white">
+<h2>Your turn</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
+<p><span style="color:white">For this your turn use the <code>box</code> data from the <code>classdata</code> package </span></p>
+<ul>
+<li><span style="color:white">Big goal: we want to create a new dataset <code>movie</code> that consists of movie, distributor, date of first time the movie shows up in the box office, and the number of weeks the movie has been released at that time.</span></li>
+<li><span style="color:white">First: what are the key variables for the new dataset?</span></li>
+<li><span style="color:white">Second: for the key variable(s) use <code>summarize</code> to find the first time a movie shows up in the box office and find the related number of weeks. </span></li>
+</ul>
+<p><br><br><br><br><br><br><br><br></p>
+</section><section id="key-variables" class="slide level2">
+<h2>Key variables</h2>
+<p>Does <code>Movie</code> uniquely describe a movie?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies &lt;-<span class="st"> </span>box <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Movie, Distributor) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unique</span>()</code></pre></div>
 <p>Does that make a movie unique?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(Movie) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n))</code></pre></div>
-<pre><code>## # A tibble: 1,999 x 2
+<pre><code>## # A tibble: 3,182 x 2
 ##    Movie                    n
-##    &lt;fct&gt;                &lt;int&gt;
+##    &lt;chr&gt;                &lt;int&gt;
 ##  1 Beauty and the Beast     2
 ##  2 Breathe                  2
-##  3 Girlhood                 2
-##  4 Gold                     2
-##  5 Mama Africa              2
-##  6 Reset                    2
-##  7 The Dinner               2
-##  8 The Witness              2
-##  9 Youth                    2
-## 10 ’71                      1
-## # ... with 1,989 more rows</code></pre>
-</section><section id="split-key---take-2" class="slide level2">
-<h2>Split key - take 2</h2>
-<p>Second idea: ideally we would like a release date. BUT: we only have Week info.</p>
+##  3 Concussion               2
+##  4 Entertainment            2
+##  5 Girlhood                 2
+##  6 Gold                     2
+##  7 Leviathan                2
+##  8 Mama Africa              2
+##  9 Phantom                  2
+## 10 Reset                    2
+## # ... with 3,172 more rows</code></pre>
+</section><section id="movie-data---take-2" class="slide level2">
+<h2>Movie data - take 2</h2>
 <p>Get the Week info for the first time we see each Movie and Distributor combo:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">box &lt;-<span class="st"> </span>box <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Movie, Distributor) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">firstSeen =</span> <span class="kw">min</span>(Week))
-<span class="kw">head</span>(box)</code></pre></div>
-<pre><code>## # A tibble: 6 x 12
-## # Groups:   Movie, Distributor [6]
-##    Rank Rank.Last.Week Movie    Distributor  Gross Change Thtrs. Per.Thtr.
-##   &lt;int&gt;          &lt;int&gt; &lt;fct&gt;    &lt;fct&gt;        &lt;dbl&gt;  &lt;int&gt;  &lt;int&gt;     &lt;int&gt;
-## 1     1              1 Black P… Walt Disney 1.12e⁸    -45   4020     27776
-## 2     2             NA Game Ni… Warner Bro… 1.70e⁷     NA   3488      4875
-## 3     3              2 Peter R… Sony Pictu… 1.28e⁷    -27   3707      3442
-## 4     4             NA Annihil… Paramount … 1.11e⁷     NA   2012      5503
-## 5     5              3 Fifty S… Universal   7.15e⁶    -59   3265      2189
-## 6     6              4 Jumanji… Sony Pictu… 5.65e⁶    -29   2519      2243
-## # ... with 4 more variables: Total.Gross &lt;int&gt;, Week &lt;int&gt;, Date &lt;fct&gt;,
-## #   firstSeen &lt;dbl&gt;</code></pre>
-</section><section id="movie-data" class="slide level2">
-<h2>Movie data</h2>
-<p>Now extract all the information for movies we first see:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies &lt;-<span class="st"> </span>box <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Week <span class="op">==</span><span class="st"> </span>firstSeen) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Movie, Distributor, Date, Week)
-movies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(Week))</code></pre></div>
-<pre><code>## # A tibble: 2,010 x 4
-## # Groups:   Movie, Distributor [2,008]
-##    Movie                    Distributor          Date        Week
-##    &lt;fct&gt;                    &lt;fct&gt;                &lt;fct&gt;      &lt;int&gt;
-##  1 The Fallen Idol          Rialto Pictures      2016-05-27  3472
-##  2 The Third Man            Rialto Pictures      2015-06-26  3413
-##  3 Bob le flambeur          Triumph Releasing    2018-01-05  3080
-##  4 Elevator to the Gallows  Rialto Pictures      2016-08-05  2879
-##  5 Shakespeare Wallah       Cohen Media Group    2017-11-10  2695
-##  6 Marnie                   &quot;&quot;                   2015-05-22  2682
-##  7 Band of Outsiders        Rialto Pictures      2016-05-06  2617
-##  8 The Battle of Algiers    Rialto Pictures      2016-10-07  2560
-##  9 Night of the Living Dead Walter Reade Organi… 2017-10-13  2559
-## 10 The Lion in Winter       &quot;&quot;                   2016-12-16  2512
-## # ... with 2,000 more rows</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies &lt;-<span class="st"> </span>box <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Movie, Distributor) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(
+    <span class="dt">firstDate =</span> Date[<span class="kw">which.min</span>(Week)], 
+    <span class="dt">firstWeek =</span> <span class="kw">min</span>(Week, <span class="dt">na.rm=</span><span class="ot">TRUE</span>))
+<span class="kw">head</span>(movies)</code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+## # Groups:   Movie [6]
+##   Movie                 Distributor          firstDate  firstWeek
+##   &lt;chr&gt;                 &lt;chr&gt;                &lt;date&gt;         &lt;dbl&gt;
+## 1 ’71                   Roadside Attractions 2015-02-27      1.00
+## 2 [REC] 4: Apocalypse   Magnolia Pictures    2015-01-02      1.00
+## 3 1,000 Rupee Note      Kino Lorber          2016-09-23      1.00
+## 4 1,000 Times Goodnight Film Movement        2014-10-24      1.00
+## 5 10 Cloverfield Lane   Paramount Pictures   2016-03-11      1.00
+## 6 10 Days in a Madhouse Cafe Pictures        2015-11-20      2.00</code></pre>
+</section><section id="looking-into-inconsistencies" class="slide level2">
+<h2>Looking into inconsistencies</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Movie) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n))</code></pre></div>
+<pre><code>## # A tibble: 3,201 x 5
+## # Groups:   Movie [3,182]
+##    Movie                Distributor          firstDate  firstWeek     n
+##    &lt;chr&gt;                &lt;chr&gt;                &lt;date&gt;         &lt;dbl&gt; &lt;int&gt;
+##  1 Beauty and the Beast Lopert Pictures Cor… 2016-02-12      1.00     2
+##  2 Beauty and the Beast Walt Disney          2017-03-17      1.00     2
+##  3 Breathe              Bleecker Street      2017-10-13      1.00     2
+##  4 Breathe              Film Movement        2015-09-11      1.00     2
+##  5 Concussion           Radius               2013-10-04      1.00     2
+##  6 Concussion           Sony Pictures        2015-12-25      1.00     2
+##  7 Entertainment        B4U Movies           2014-08-08      1.00     2
+##  8 Entertainment        Magnolia Pictures    2015-11-13      1.00     2
+##  9 Girlhood             &quot;&quot;                   2015-04-10    598        2
+## 10 Girlhood             Strand               2015-01-30      1.00     2
+## # ... with 3,191 more rows</code></pre>
+</section><section id="using-imdb" class="slide level2">
+<h2>Using IMDb</h2>
+<ul>
+<li>Girlhood is the name of two movies - one that was released in 2003, one in 2014; most likely the Oct 4 boxoffice mention is only mistakenly referring to the 2003 movie</li>
+<li>Mama Africa refers to two movies, one released in 2002, one in 2011; likely the duplicate on Jan 19 is erroneous, but we still don’t know which of the two movies is showing (in 1 theater)</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">box <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Movie<span class="op">==</span><span class="st">&quot;Mama Africa&quot;</span>)</code></pre></div>
+<pre><code>##   Rank Rank.Last.Week       Movie           Distributor Gross Change
+## 1   88             79 Mama Africa ArtMattan Productions   481    -72
+## 2   79             67 Mama Africa ArtMattan Productions  1689    -52
+## 3   67             NA Mama Africa ArtMattan Productions  3495     NA
+## 4   69             NA Mama Africa                        3187     NA
+##   Thtrs. Per Thtr. Total.Gross Week       Date
+## 1      2       241        9808    3 2018-02-02
+## 2      2       845        8123    2 2018-01-26
+## 3      1      3495        3495    1 2018-01-19
+## 4      1      3187        3187  816 2018-01-19</code></pre>
+</section><section id="section" class="slide level2">
+<h2></h2>
+<ul>
+<li>Normalization helps identify inconsistencies in data</li>
+<li>Checking up on inconsistencies is a lot of manual labor</li>
+</ul>
 </section>
 
   <!--
