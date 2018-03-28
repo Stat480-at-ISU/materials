@@ -136,7 +136,7 @@ box %>%
   ggrepel::geom_text_repel(aes(x = Date, y = Total.Gross, label=Movie), 
             data = box_summary %>% filter(Total.Gross > 2.5e8), colour="grey50")
 ```
-
+<!--
 ## Box office gross (3)
 
 
@@ -148,15 +148,5 @@ box %>% filter(Week <= 5) %>%
   facet_grid(.~Year)
 ```
 
+-->
 
-## Your Turn (6 mins) {.white}
-
-<img class="cover" src="images/blue.jpeg" alt="" width=2000>
-
-
-- <span style="color:white">Load the `box` data from the package `classdata`,
-</span>
-- <span style="color:white">Plot a time line for each movie: plot total gross by week that the movie is out. 
-</span>
-- <span style="color:white">Label all movies that have a total gross of at least $500 million dollars. Use functionality from `ggrepel` to reduce overplotting.
-</span>

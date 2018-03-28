@@ -169,23 +169,22 @@ box <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filt
              <span class="dt">group =</span> <span class="kw">interaction</span>(Movie, Distributor))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span>
 <span class="st">  </span>ggrepel<span class="op">::</span><span class="kw">geom_text_repel</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Date, <span class="dt">y =</span> Total.Gross, <span class="dt">label=</span>Movie), 
             <span class="dt">data =</span> box_summary <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Total.Gross <span class="op">&gt;</span><span class="st"> </span><span class="fl">2.5e8</span>), <span class="dt">colour=</span><span class="st">&quot;grey50&quot;</span>)</code></pre></div>
-<p><img src="02_time-series_files/figure-revealjs/unnamed-chunk-9-1.png" width="768" /></p>
-</section><section id="box-office-gross-3" class="slide level2">
-<h2>Box office gross (3)</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">box <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Week <span class="op">&lt;=</span><span class="st"> </span><span class="dv">5</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Year =</span> <span class="kw">year</span>(Date)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Week, <span class="dt">y =</span> Total.Gross, 
-             <span class="dt">group =</span> <span class="kw">interaction</span>(Movie, Distributor))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">facet_grid</span>(.<span class="op">~</span>Year)</code></pre></div>
-<p><img src="02_time-series_files/figure-revealjs/unnamed-chunk-10-1.png" width="768" /></p>
-</section><section id="your-turn-6-mins-2" class="slide level2 white">
-<h2>Your Turn (6 mins)</h2>
-<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
-<ul>
-<li><span style="color:white">Load the <code>box</code> data from the package <code>classdata</code>, </span></li>
-<li><span style="color:white">Plot a time line for each movie: plot total gross by week that the movie is out. </span></li>
-<li><span style="color:white">Label all movies that have a total gross of at least $500 million dollars. Use functionality from <code>ggrepel</code> to reduce overplotting. </span></li>
-</ul>
+<p><img src="02_time-series_files/figure-revealjs/unnamed-chunk-9-1.png" width="768" /> <!--
+## Box office gross (3)
+
+
+
+```r
+box %>% filter(Week <= 5) %>%
+  mutate(Year = year(Date)) %>%
+  ggplot(aes(x = Week, y = Total.Gross, 
+             group = interaction(Movie, Distributor))) + geom_line() +
+  facet_grid(.~Year)
+```
+
+<img src="02_time-series_files/figure-revealjs/unnamed-chunk-10-1.png" width="768" />
+
+--></p>
 </section>
 
   <!--
