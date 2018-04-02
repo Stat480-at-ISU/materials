@@ -66,6 +66,11 @@
   
 <section id="drawing-maps" class="titleslide slide level1"><h2 class="shout">Drawing maps</h2></section><section id="outline" class="slide level2">
 <h2>Outline</h2>
+<ul>
+<li>what is a map</li>
+<li>maps and map data in ggplot</li>
+<li>drawing choropleth maps</li>
+</ul>
 </section><section id="maps-are" class="slide level2">
 <h2>Maps are …</h2>
 <div class="double">
@@ -195,12 +200,55 @@ fbi.map <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">fill=</span>Count<span class="op">/</span>Population<span class="op">*</span><span class="dv">60000</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">group=</span>group))</code></pre></div>
 <p><img src="04_maps_files/figure-revealjs/unnamed-chunk-13-1.png" width="768" /></p>
-</section><section id="your-turn-6-mins-1" class="slide level2 white">
-<h2>Your Turn (6 mins)</h2>
+</section><section id="your-turn" class="slide level2 white">
+<h2>Your Turn</h2>
 <p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
 <ul>
 <li><span style="color:white">Draw a choropleth map of the rate of motor vehicle thefts in 2012 across the US. </span></li>
 <li><span style="color:white"><code>scale_fill_gradient2</code> allows you to set a color scheme with two main colors. Read up on it and change the scheme in the first choropleth map. </span></li>
+</ul>
+</section><section id="geographic-data-in-layers" class="slide level2">
+<h2>Geographic data in layers</h2>
+<ul>
+<li>For data collected with GPS coordinates we can use maps as background layers</li>
+<li>e.g. campaign expenditures</li>
+<li>In that situation, we do not need to join the map information and the content data, but use layers with separate data sets of the form</li>
+</ul>
+<pre><code>map %&gt;% ggplot(aes(x = long, y = lat)) + 
+  geom_polygon(aes(group = group)) +
+  geom_point(aes(x=longitude, y = latitude), data = content) </code></pre>
+</section><section id="fars-data" class="slide level2">
+<h2>FARS data</h2>
+<ul>
+<li>US Department of transportation is keeping a record of every accident that results in a fatality in the FARS Data base (fatal accident report system, <a href="http://www.nhtsa.gov/FARS" class="uri">http://www.nhtsa.gov/FARS</a>)</li>
+<li>FARS consists of 20+ tables consisting of various aspects of each accident Documentation at</li>
+<li><a href="https://www-fars.nhtsa.dot.gov/Main/index.aspx" class="uri">https://www-fars.nhtsa.dot.gov/Main/index.aspx</a></li>
+<li>three of the main tables are <code>accident</code>, <code>person</code>, and <code>vehicle</code></li>
+</ul>
+</section><section id="data" class="slide level2">
+<h2>Data</h2>
+<ul>
+<li>Data of all accidents are available at:</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">acc &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/DS202-at-ISU/labs/master/data/fars2016/accident.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
+<span class="kw">names</span>(acc)</code></pre></div>
+<pre><code>##  [1] &quot;STATE&quot;      &quot;ST_CASE&quot;    &quot;VE_TOTAL&quot;   &quot;VE_FORMS&quot;   &quot;PVH_INVL&quot;  
+##  [6] &quot;PEDS&quot;       &quot;PERNOTMVIT&quot; &quot;PERMVIT&quot;    &quot;PERSONS&quot;    &quot;COUNTY&quot;    
+## [11] &quot;CITY&quot;       &quot;DAY&quot;        &quot;MONTH&quot;      &quot;YEAR&quot;       &quot;DAY_WEEK&quot;  
+## [16] &quot;HOUR&quot;       &quot;MINUTE&quot;     &quot;NHS&quot;        &quot;RUR_URB&quot;    &quot;FUNC_SYS&quot;  
+## [21] &quot;RD_OWNER&quot;   &quot;ROUTE&quot;      &quot;TWAY_ID&quot;    &quot;TWAY_ID2&quot;   &quot;MILEPT&quot;    
+## [26] &quot;LATITUDE&quot;   &quot;LONGITUD&quot;   &quot;SP_JUR&quot;     &quot;HARM_EV&quot;    &quot;MAN_COLL&quot;  
+## [31] &quot;RELJCT1&quot;    &quot;RELJCT2&quot;    &quot;TYP_INT&quot;    &quot;WRK_ZONE&quot;   &quot;REL_ROAD&quot;  
+## [36] &quot;LGT_COND&quot;   &quot;WEATHER1&quot;   &quot;WEATHER2&quot;   &quot;WEATHER&quot;    &quot;SCH_BUS&quot;   
+## [41] &quot;RAIL&quot;       &quot;NOT_HOUR&quot;   &quot;NOT_MIN&quot;    &quot;ARR_HOUR&quot;   &quot;ARR_MIN&quot;   
+## [46] &quot;HOSP_HR&quot;    &quot;HOSP_MN&quot;    &quot;CF1&quot;        &quot;CF2&quot;        &quot;CF3&quot;       
+## [51] &quot;FATALS&quot;     &quot;DRUNK_DR&quot;</code></pre>
+</section><section id="your-turn-1" class="slide level2 white">
+<h2>Your Turn</h2>
+<p><img class="cover" src="images/blue.jpeg" alt="" width=2000></p>
+<ul>
+<li><span style="color:white">Use the accident data to plot the geographic location of all accidents in the US in 2016. </span></li>
+<li><span style="color:white"> Plot accidents on a map of the US (use the map of the US as first layer) </span></li>
 </ul>
 </section>
 

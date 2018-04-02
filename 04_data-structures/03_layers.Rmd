@@ -103,3 +103,5 @@ nasa %>% filter(id=="1-1") %>%
 </span>
 - <span style="color:white">Label the three movies with the highest total gross.
 </span>
+- <span style="color:white">Color the label of these three movies with a color of your choice.
+</span>
