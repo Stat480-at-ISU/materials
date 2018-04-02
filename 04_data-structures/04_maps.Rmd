@@ -214,5 +214,7 @@ names(acc)
 </span>
 - <span style="color:white"> Plot accidents on a map of the US (use the map of the US as first layer)
 </span>
+- <span style="color:white">Why would it be tricky to plot a choropleth map of the number of accidents by state?
+</span>
 
 
