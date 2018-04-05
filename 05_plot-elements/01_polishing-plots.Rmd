@@ -1,0 +1,100 @@
+---
+title: "Polishing plots"
+author: Heike Hofmann
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+# Polishing plots
+
+## Outline
+
+- color choices
+- themes
+
+## `ggplot2` provides defaults ...
+
+- but every aspect of the plot can be changed
+- colors are controlled through **scales**
+- **themes** control presentation of non-data elements
+
+## Color Scales
+
+default continuous colour scheme
+
+```{r, message = FALSE}
+library(tidyverse)
+p1 <- mpg %>% filter(year == 2008) %>%
+  ggplot(aes(x = cty, y = hwy, colour = cyl)) +
+  geom_point()
+```
+
+
+```{r}
+p1 + scale_colour_continuous()
+```
+
+## Color Scales
+
+default discrete colour scheme
+
+```{r, message = FALSE}
+p2 <- mpg %>% filter(year == 2008) %>%
+  ggplot(aes(x = cty, y = hwy, colour = factor(cyl))) +
+  geom_point()
+```
+
+
+```{r}
+p2 + scale_colour_discrete()
+```
+
+## Color Scales
+
+- Colors are controlled through scales
+`scale_colour_discrete` (`scale_colour_hue`) and `scale_colour_continuous` (`scale_colour_gradient`) are the default choices for factor variables and numeric variables
+- we can change parameters of the default scale, or we can change
+the scale function
+
+## Colour gradients
+
+`scale_colour_gradient (..., low = "#132B43", high = "#56B1F7", space = "Lab", na.value = "grey50", guide = “colourbar")`
+
+- colors can be specified by hex code, name or through rgb()
+- gradient goes from low to high - that should match the interpretation of the mapped variable
+
+
+## Colour gradients - divergent scheme
+
+`scale_colour_gradient2(..., low = muted("red"), mid = "white",  
+high = muted("blue"), midpoint = 0, space = "Lab", na.value = "grey50",  guide = "colourbar")`
+
+- midpoint is value of the ‘neutral’ color gradient2 is a divergent color scheme
+- best matches a variable that goes from large negative to zero to large positive (or below mean, above mean)
+
+
+## Discrete color schemes
+
+`scale_color_hue (..., h = c(0, 360) + 15, c = 100, l = 65, h.start = 0, direction = 1, na.value = "grey50")`
+
+- uses hue, chroma and luminance (=value)
+- each level of a variable is assigned a different level of h
+
+
+## Discrete color schemes - Brewer
+
+`scale_colour_brewer(..., type = "seq", palette = 1, direction = 1)`
+
+- brewer schemes are defined in RColorBrewer (Neuwirth, 2014) palettes can be specified by name or index
+- see also http://colorbrewer2.org/ (Brewer et al 2002)
+
+## All brewer schemes
+
+```{r, fig.height=6.5}
+library(RColorBrewer)
+display.brewer.all()
+```

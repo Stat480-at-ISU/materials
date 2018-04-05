@@ -217,4 +217,13 @@ names(acc)
 - <span style="color:white">Why would it be tricky to plot a choropleth map of the number of accidents by state?
 </span>
 
+## Your Turn  {.white}
+
+<img class="cover" src="images/blue.jpeg" alt="" width=2000>
+
+- <span style="color:white">The numbers for each state (`STATE`) are so-called fips codes. 
+</span>
+- <span style="color:white">Sketch out the steps necessary to draw a choropleth map of the rate of fatal accidents by state.
+</span>
+
 
