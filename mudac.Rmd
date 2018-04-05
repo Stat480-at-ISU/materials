@@ -1,0 +1,24 @@
+---
+title: "MUDAC"
+author: Heike Hofmann
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+# MUDAC
+
+## Basic info
+
+- bit of bad news: only two teams are allowed (4 members each)
+- only graduating seniors can go ...
+- everybody else: next year, promise!
+
+## More basic info
+
+- meet to leave Saturday morning 6:15 am in parking lot across from Snedecor (West of Gilman lab), you can leave any cars there over the weekend
+- return (late) afternoon on Sunday
+- still interested? ... please send me email now. 

@@ -94,7 +94,7 @@ high = muted("blue"), midpoint = 0, space = "Lab", na.value = "grey50",  guide =
 
 ## All brewer schemes
 
-```{r, fig.height=6.5}
+```{r, fig.height=6}
 library(RColorBrewer)
 display.brewer.all()
 ```
