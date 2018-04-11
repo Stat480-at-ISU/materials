@@ -22,6 +22,8 @@ output:
 - colors are controlled through **scales**
 - **themes** control presentation of non-data elements
 
+# Colors
+
 ## Color Scales
 
 default continuous colour scheme
@@ -98,3 +100,99 @@ high = muted("blue"), midpoint = 0, space = "Lab", na.value = "grey50",  guide =
 library(RColorBrewer)
 display.brewer.all()
 ```
+
+## Color and Fill
+
+- Area geoms (barcharts, histograms, polygons) use `fill` to map values to the fill color
+- only discrete color scales can be used:  `scale_fill_hue`, `scale_fill_brewer`, `scale_fill_grey`, ...
+- most general: `scale_fill_manual (..., values)` 
+values is a vector of color values. At least as many colors as levels in the variable have to be listed
+
+# Themes
+
+## Themes
+
+- Themes allow to control every aspect of non-data related aspects of a plot 
+- Several pre-defined themes: `theme_grey` (default), `theme_bw`, `theme_light`, `theme_dark`
+- Use `theme_set` if you want it to apply a theme to every future plot, e.g. `theme_set(theme_bw())`
+- `ggthemes` package defines additional themes: 
+`library(help = "ggthemes")` lists all themes
+
+## Example
+
+```{r}
+p <- mpg %>% ggplot(aes(x = displ, y =  cty, colour= factor(class))) + geom_point()
+```
+
+<p class="double">
+```{r, fig.width = 4, fig.height = 2}
+p + theme_grey()
+```
+```{r, fig.width = 4, fig.height = 2}
+p + theme_bw()
+```
+</p>
+
+## Example - more themes
+
+```{r}
+p <- mtcars %>% ggplot(aes(x = wt, y =  mpg, colour= factor(cyl))) + geom_point()
+```
+
+<p class="double">
+```{r, fig.width = 4, fig.height = 2}
+p + theme_light()
+```
+```{r, fig.width = 4, fig.height = 2}
+p + theme_dark()
+```
+
+</p>
+
+## More themes
+
+```{r}
+library(ggthemes)
+```
+
+<p class="double">
+```{r, fig.width = 4, fig.height = 2}
+p + theme_excel() 
+```
+```{r, fig.width = 4, fig.height = 2}
+p + theme_fivethirtyeight()
+```
+
+</p>
+
+## Elements
+
+- You can also make your own theme, or modify an existing.
+- Themes are made up of elements which can be one of:
+`element_line`,  `element_text`, `element_rect`,
+`element_blank`
+- Gives you a lot of control over plot appearance.
+
+## Elements of themes
+
+- Axis:  
+  `axis.line`, `axis.text.x`, `axis.text.y`, `axis.ticks`, `axis.title.x`, `axis.title.y`
+- Legend:  
+`legend.background`, `legend.key`, `legend.text`, `legend.title`
+- Panel:  
+`panel.background`, `panel.border`, `panel.grid.major`, `panel.grid.minor`
+- Strip (facetting):  
+`strip.background`, `strip.text.x`, `strip.text.y`
+
+for a complete overview see `?theme`
+
+
+## Changing elements manually
+
+- to change an element add the theme function and specify inside:
+- example:
+
+```{r, fig.width = 4, fig.height = 4}
+mpg %>% ggplot(aes(x = manufacturer)) + geom_bar() +
+  theme(axis.text.x = element_text(angle=90, vjust=0.5, hjust=1))
+```    

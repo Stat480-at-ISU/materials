@@ -77,7 +77,8 @@
 <li>colors are controlled through <strong>scales</strong></li>
 <li><strong>themes</strong> control presentation of non-data elements</li>
 </ul>
-</section><section id="color-scales" class="slide level2">
+</section>
+<section id="colors" class="titleslide slide level1"><h2 class="shout">Colors</h2></section><section id="color-scales" class="slide level2">
 <h2>Color Scales</h2>
 <p>default continuous colour scheme</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
@@ -133,6 +134,78 @@ p1 &lt;-<span class="st"> </span>mpg <span class="op">%&gt;%</span><span class="
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(RColorBrewer)
 <span class="kw">display.brewer.all</span>()</code></pre></div>
 <p><img src="01_polishing-plots_files/figure-revealjs/unnamed-chunk-5-1.png" width="768" /></p>
+</section><section id="color-and-fill" class="slide level2">
+<h2>Color and Fill</h2>
+<ul>
+<li>Area geoms (barcharts, histograms, polygons) use <code>fill</code> to map values to the fill color</li>
+<li>only discrete color scales can be used: <code>scale_fill_hue</code>, <code>scale_fill_brewer</code>, <code>scale_fill_grey</code>, …</li>
+<li>most general: <code>scale_fill_manual (..., values)</code> values is a vector of color values. At least as many colors as levels in the variable have to be listed</li>
+</ul>
+</section>
+<section id="themes" class="titleslide slide level1"><h2 class="shout">Themes</h2></section><section id="themes-1" class="slide level2">
+<h2>Themes</h2>
+<ul>
+<li>Themes allow to control every aspect of non-data related aspects of a plot</li>
+<li>Several pre-defined themes: <code>theme_grey</code> (default), <code>theme_bw</code>, <code>theme_light</code>, <code>theme_dark</code></li>
+<li>Use <code>theme_set</code> if you want it to apply a theme to every future plot, e.g. <code>theme_set(theme_bw())</code></li>
+<li><code>ggthemes</code> package defines additional themes: <code>library(help = &quot;ggthemes&quot;)</code> lists all themes</li>
+</ul>
+</section><section id="example" class="slide level2">
+<h2>Example</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span>mpg <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span>  cty, <span class="dt">colour=</span> <span class="kw">factor</span>(class))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
+<p class="double">
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_grey</span>()</code></pre></div>
+<p><img src="01_polishing-plots_files/figure-revealjs/unnamed-chunk-7-1.png" width="384" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</code></pre></div>
+<img src="01_polishing-plots_files/figure-revealjs/unnamed-chunk-8-1.png" width="384" />
+</p>
+</section><section id="example---more-themes" class="slide level2">
+<h2>Example - more themes</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> wt, <span class="dt">y =</span>  mpg, <span class="dt">colour=</span> <span class="kw">factor</span>(cyl))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
+<p class="double">
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_light</span>()</code></pre></div>
+<p><img src="01_polishing-plots_files/figure-revealjs/unnamed-chunk-10-1.png" width="384" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_dark</span>()</code></pre></div>
+<p><img src="01_polishing-plots_files/figure-revealjs/unnamed-chunk-11-1.png" width="384" /></p>
+</p>
+</section><section id="more-themes" class="slide level2">
+<h2>More themes</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggthemes)</code></pre></div>
+<p class="double">
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_excel</span>() </code></pre></div>
+<p><img src="01_polishing-plots_files/figure-revealjs/unnamed-chunk-13-1.png" width="384" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_fivethirtyeight</span>()</code></pre></div>
+<p><img src="01_polishing-plots_files/figure-revealjs/unnamed-chunk-14-1.png" width="384" /></p>
+</p>
+</section><section id="elements" class="slide level2">
+<h2>Elements</h2>
+<ul>
+<li>You can also make your own theme, or modify an existing.</li>
+<li>Themes are made up of elements which can be one of: <code>element_line</code>, <code>element_text</code>, <code>element_rect</code>, <code>element_blank</code></li>
+<li>Gives you a lot of control over plot appearance.</li>
+</ul>
+</section><section id="elements-of-themes" class="slide level2">
+<h2>Elements of themes</h2>
+<ul>
+<li>Axis:<br />
+<code>axis.line</code>, <code>axis.text.x</code>, <code>axis.text.y</code>, <code>axis.ticks</code>, <code>axis.title.x</code>, <code>axis.title.y</code></li>
+<li>Legend:<br />
+<code>legend.background</code>, <code>legend.key</code>, <code>legend.text</code>, <code>legend.title</code></li>
+<li>Panel:<br />
+<code>panel.background</code>, <code>panel.border</code>, <code>panel.grid.major</code>, <code>panel.grid.minor</code></li>
+<li>Strip (facetting):<br />
+<code>strip.background</code>, <code>strip.text.x</code>, <code>strip.text.y</code></li>
+</ul>
+<p>for a complete overview see <code>?theme</code></p>
+</section><section id="changing-elements-manually" class="slide level2">
+<h2>Changing elements manually</h2>
+<ul>
+<li>to change an element add the theme function and specify inside:</li>
+<li>example:</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mpg <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> manufacturer)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle=</span><span class="dv">90</span>, <span class="dt">vjust=</span><span class="fl">0.5</span>, <span class="dt">hjust=</span><span class="dv">1</span>))</code></pre></div>
+<p><img src="01_polishing-plots_files/figure-revealjs/unnamed-chunk-15-1.png" width="384" /></p>
 </section>
 
   <!--
