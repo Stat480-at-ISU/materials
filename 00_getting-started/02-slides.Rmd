@@ -1,0 +1,54 @@
+---
+title: "Stat 480 - grading"
+author: Heike Hofmann
+ratio: 16x10
+output:
+  rmdshower::shower_presentation:
+    self_contained: false
+    katex: true
+    theme: ribbon
+---
+
+# Change to grading weights
+
+
+## With the midterm project
+
+Final grades are calculated as weighted average of:
+
+| Component | Weight |
+|:-- | --:|
+| Homework | 30% |
+| Midterm | 25% |
+| Midterm project | 15% |
+| **Final Project** | |
+|   report | 22.5% |
+|   presentation | 7.5% |
+
+
+## Without the midterm project
+
+Final grades are calculated as weighted average of:
+
+| Component | Weight |
+|:-- | --:|
+| Homework | 40% |
+| Midterm | 25% |
+| **Final Project** | |
+|   report | 27.5% |
+|   presentation | 7.5% |
+
+## Without the midterm project
+
+Calculate final points (out of 100) as:
+
+| Component | Weight |
+|:-- | --:|
+| Homework | 40 x (hwk points + hwk extra credit)/100 |
+| Midterm | 25 x (midterm pts + midterm extra credit)/100 |
+| **Final Project** | |
+|   report | 27.5 x (final project pts + extra credit)/100 |
+|   presentation | 7.5 x (presentation pts + question pts)/44 |
+| **Final Grade** | sum of above |
+
+Letter grade not stricter than 90-80-70, likely more lenient
